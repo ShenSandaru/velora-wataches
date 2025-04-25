@@ -58,5 +58,95 @@ export const products = [
       "Ultra-Thin Case",
       "Scratch Resistant"
     ]
+  },
+  {
+    id: 5,
+    name: "Classic Gold Edition",
+    price: 399.99,
+    image: "https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/watch5.png",
+    description: "Luxurious gold watch with premium craftsmanship",
+    category: "Luxury",
+    inStock: true,
+    features: [
+      "Swiss Movement",
+      "18K Gold Plating",
+      "Sapphire Crystal",
+      "Water Resistant"
+    ]
+  },
+  {
+    id: 6,
+    name: "Sport Pro",
+    price: 279.99,
+    image: "https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/watch6.png",
+    description: "Professional sports watch with advanced features",
+    category: "Sport",
+    inStock: true,
+    features: [
+      "Chronograph",
+      "Tachymeter",
+      "Luminous Hands",
+      "Sport Band"
+    ]
+  },
+  {
+    id: 7,
+    name: "Executive Silver",
+    price: 449.99,
+    image: "https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/watch7.png",
+    description: "Elegant silver timepiece for the modern executive",
+    category: "Premium",
+    inStock: true,
+    features: [
+      "Automatic Movement",
+      "Silver Bracelet",
+      "Date Display",
+      "Anti-reflective Crystal"
+    ]
+  },
+  {
+    id: 8,
+    name: "Urban Style",
+    price: 299.99,
+    image: "https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/watch8.png",
+    description: "Contemporary watch for urban lifestyle",
+    category: "Casual",
+    inStock: true,
+    features: [
+      "Japanese Movement",
+      "Leather Strap",
+      "Minimalist Design",
+      "Date Function"
+    ]
+  },
+  {
+    id: 9,
+    name: "Classic Rose Gold",
+    price: 379.99,
+    image: "https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/watch9.png",
+    description: "Sophisticated rose gold watch with elegant design",
+    category: "Luxury",
+    inStock: true,
+    features: [
+      "Rose Gold Plating",
+      "Crystal Markers",
+      "Mesh Band",
+      "Water Resistant"
+    ]
+  },
+  {
+    id: 10,
+    name: "Modern Chronograph",
+    price: 459.99,
+    image: "https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/watch10.png",
+    description: "Modern chronograph with sophisticated features",
+    category: "Premium",
+    inStock: true,
+    features: [
+      "Swiss Chronograph",
+      "Stainless Steel",
+      "Tachymeter Scale",
+      "Luminous Indices"
+    ]
   }
 ];
