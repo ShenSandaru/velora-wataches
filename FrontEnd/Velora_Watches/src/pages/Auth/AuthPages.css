@@ -1,0 +1,52 @@
+.auth-page {
+  max-width: 500px;
+  margin: 6rem auto 2rem auto; /* Increased top margin to account for fixed navbar */
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.auth-page h1 {
+  margin-bottom: 1rem;
+  color: #222222;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.auth-subtitle {
+  color: #555;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.auth-alt-option {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.auth-alt-option a {
+  color: #a39023; /* Changed to match gold theme */
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.auth-alt-option a:hover {
+  color: #ffd700; /* Brighter gold on hover */
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .auth-page {
+    margin: 5rem auto 1rem auto;
+    padding: 1.5rem;
+    width: 95%;
+  }
+  
+  .auth-page h1 {
+    font-size: 1.5rem;
+  }
+}

@@ -40,6 +40,10 @@ const Navbar = () => {
           <li><Link to="/collections" onClick={closeMenu}>Collections</Link></li>
           <li><Link to="/products" onClick={closeMenu}>All Watches</Link></li>
           <li><Link to="/cart" onClick={closeMenu}>Cart</Link></li>
+          <li className="auth-links">
+            <Link to="/login" onClick={closeMenu} className="login-link">Login</Link>
+            <Link to="/signup" onClick={closeMenu} className="signup-link">Sign Up</Link>
+          </li>
         </ul>
       </div>
     </nav>

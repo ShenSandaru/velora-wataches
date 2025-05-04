@@ -2,6 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-top: 64px; /* Add padding equal to navbar height */
 }
 
 .main-content {
@@ -10,4 +11,16 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+  .layout {
+    padding-top: 60px; /* Adjust padding for medium screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .layout {
+    padding-top: 54px; /* Adjust padding for small screens */
+  }
 }

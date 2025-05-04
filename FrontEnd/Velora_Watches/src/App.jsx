@@ -4,6 +4,8 @@ import HomePage from './pages/Home/HomePage';
 import ProductsPage from './pages/Products/ProductsPage';
 import CartPage from './pages/Cart/CartPage';
 import CollectionsPage from './pages/Collections/CollectionsPage';
+import SignUpPage from './pages/Auth/SignUpPage';
+import LoginPage from './pages/Auth/LoginPage';
 import './App.css';
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
           <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path='/signup' element={<SignUpPage />} />
+          <Route path='/login' element={<LoginPage />} />
         </Routes>
       </div>
     </BrowserRouter>
