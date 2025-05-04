@@ -7,7 +7,7 @@ Welcome to the Velora Watches web application repository! This project contains 
 We recommend using the **GitHub Desktop** app for all git operations (clone, merge, push, etc.).
 
 1. **Open GitHub in your browser and navigate to this repository.**
-2. **Click the green `Code` button** and select `Open with GitHub Desktop`.
+2. **Click the green `<>Code` button** and select `Open with GitHub Desktop`.
 3. **Choose a location on your computer** to save the project and click `Clone`.
 
 > Using GitHub Desktop makes it easy to manage branches, commits, merges, and pushes during development.
