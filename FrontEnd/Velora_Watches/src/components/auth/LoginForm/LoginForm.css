@@ -1,0 +1,114 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  color: #444;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #ffd700; /* Changed from #1e7031 to gold */
+}
+
+.input-error {
+  border-color: #e53e3e !important;
+  background-color: #fff5f5;
+}
+
+.error-message {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.form-error {
+  background-color: #fff5f5;
+  color: #e53e3e;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border-left: 3px solid #e53e3e;
+  margin-bottom: 0.5rem;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-checkbox label {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.forgot-password {
+  font-size: 0.9rem;
+  color: #a39023; /* Changed from #1e7031 to match gold theme */
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  background-color: #0a0a0a; /* Changed to match navbar dark color */
+  color: white;
+  padding: 0.75rem;
+  border: 1px solid #333333;
+  border-radius: 24px; /* Changed from 4px to match navbar buttons */
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.login-btn:hover {
+  background-color: #222222;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+.login-btn:disabled {
+  background-color: #444444;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
