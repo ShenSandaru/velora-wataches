@@ -1,42 +1,47 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useUser } from '../../../Context/UserContext';
+import { authAPI } from '../../../services/api';
 import './LoginForm.css';
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useUser();
+  
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
+  
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Check for success message from registration or other sources
+  useEffect(() => {
+    if (location.state?.message) {
+      setSuccessMessage(location.state.message);
+      // Clear the message from location state
+      navigate(location.pathname, { replace: true });
+    }
+  }, [location, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData({ ...formData, [name]: value });
     
-    // Clear error when user starts typing
+    // Clear errors when typing
     if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
+      setErrors({ ...errors, [name]: '' });
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
     
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    }
-    
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    }
+    if (!formData.email) newErrors.email = "Email is required";
+    if (!formData.password) newErrors.password = "Password is required";
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -45,83 +50,88 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
     
-    setIsSubmitting(true);
+    setIsLoading(true);
     
     try {
-      // Here you would typically authenticate against your backend
-      console.log('Login attempt:', formData);
+      const response = await authAPI.login(formData.email, formData.password);
       
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Use the login function from UserContext
+      login(response.user, response.token);
       
-      // Redirect to home after successful login
-      navigate('/');
+      setSuccessMessage('Login successful! Redirecting...');
+      
+      // Redirect to home page after short delay
+      setTimeout(() => {
+        navigate('/');
+      }, 1500);
+      
     } catch (error) {
-      console.error('Login failed:', error);
-      setErrors({
-        form: 'Invalid email or password. Please try again.'
-      });
+      setErrors({ form: error.message || 'Login failed. Please check your credentials.' });
     } finally {
-      setIsSubmitting(false);
+      setIsLoading(false);
     }
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      {errors.form && (
-        <div className="form-error">{errors.form}</div>
-      )}
-      
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          className={errors.email ? 'input-error' : ''}
-        />
-        {errors.email && (
-          <span className="error-message">{errors.email}</span>
+    <div className="login-form-container">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Login to Your Account</h2>
+        
+        {/* Success Message */}
+        {successMessage && (
+          <div className="success-message">
+            {successMessage}
+          </div>
         )}
-      </div>
-      
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          className={errors.password ? 'input-error' : ''}
-        />
-        {errors.password && (
-          <span className="error-message">{errors.password}</span>
+        
+        {/* Form Error */}
+        {errors.form && (
+          <div className="error-message">
+            {errors.form}
+          </div>
         )}
-      </div>
-      
-      <div className="form-options">
-        <div className="form-checkbox">
-          <input type="checkbox" id="remember" name="remember" />
-          <label htmlFor="remember">Remember me</label>
+        
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className={errors.email ? 'error' : ''}
+          />
+          {errors.email && <span className="error-text">{errors.email}</span>}
         </div>
-        <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
-      </div>
-      
-      <button 
-        type="submit" 
-        className="login-btn"
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? 'Signing In...' : 'Sign In'}
-      </button>
-    </form>
+        
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className={errors.password ? 'error' : ''}
+          />
+          {errors.password && <span className="error-text">{errors.password}</span>}
+        </div>
+        
+        <button 
+          type="submit" 
+          className="login-btn" 
+          disabled={isLoading}
+        >
+          {isLoading ? 'Logging in...' : 'Login'}
+        </button>
+        
+        <p className="signup-link">
+          Don't have an account? <Link to="/signup">Sign up here</Link>
+        </p>
+      </form>
+    </div>
   );
 };
 

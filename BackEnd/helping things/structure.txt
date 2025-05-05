@@ -1,0 +1,62 @@
+BackEnd/
+│
+├── src/                            # Source code directory
+│   ├── controllers/                # Request handlers
+│   │   ├── authController.js       # Authentication logic (login, signup, etc.)
+│   │   ├── productController.js    # Product management logic
+│   │   ├── cartController.js       # Shopping cart operations
+│   │   ├── orderController.js      # Order processing logic
+│   │   └── userController.js       # User profile management
+│   │
+│   ├── models/                     # Database models/schemas
+│   │   ├── User.js                 # User model
+│   │   ├── Product.js              # Product model
+│   │   ├── Cart.js                 # Cart model
+│   │   ├── Order.js                # Order model
+│   │   └── Collection.js           # Collection/Category model
+│   │
+│   ├── routes/                     # API route definitions
+│   │   ├── authRoutes.js           # Authentication routes
+│   │   ├── productRoutes.js        # Product routes
+│   │   ├── cartRoutes.js           # Cart routes
+│   │   ├── orderRoutes.js          # Order routes
+│   │   └── userRoutes.js           # User routes
+│   │
+│   ├── middleware/                 # Middleware functions
+│   │   ├── auth.js                 # Authentication middleware
+│   │   ├── errorHandler.js         # Error handling middleware
+│   │   ├── validator.js            # Input validation middleware
+│   │   └── upload.js               # File upload middleware
+│   │
+│   ├── config/                     # Configuration files
+│   │   ├── db.js                   # Database configuration
+│   │   ├── passport.js             # Auth strategy configuration
+│   │   └── constants.js            # App-wide constants
+│   │
+│   ├── utils/                      # Utility functions
+│   │   ├── logger.js               # Logging utility
+│   │   ├── helpers.js              # General helper functions
+│   │   └── validation.js           # Input validation functions
+│   │
+│   ├── services/                   # Business logic services
+│   │   ├── paymentService.js       # Payment processing
+│   │   ├── emailService.js         # Email notifications
+│   │   └── imageService.js         # Image handling
+│   │
+│   └── server.js                   # Main application entry point
+│
+├── tests/                          # Test files
+│   ├── unit/                       # Unit tests
+│   ├── integration/                # Integration tests
+│   └── fixtures/                   # Test fixtures/data
+│
+├── uploads/                        # File uploads (product images, etc.)
+│
+├── docs/                           # API documentation
+│
+├── package.json                    # Project dependencies and scripts
+├── .env                            # Environment variables (not in version control)
+├── .env.example                    # Example environment variables file
+├── .gitignore                      # Git ignore file
+└── README.md                       # Backend documentation
+
