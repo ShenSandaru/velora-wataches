@@ -31,7 +31,7 @@ const HomePage = () => {
           />
           <div className="offer-content">
             <h2>Special Offer</h2>
-            <p>Get 30% off on premium watches</p>
+            <p>Get 50% off on premium watches</p>
             <Link to="/products">
               <button className="offer-btn">Shop Now</button>
             </Link>
