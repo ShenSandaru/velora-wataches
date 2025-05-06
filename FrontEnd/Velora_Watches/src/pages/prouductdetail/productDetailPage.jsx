@@ -1,5 +1,6 @@
 import React from "react";
-import "./ProductDetail.css";
+import './ProductDetailPage.css';
+
 
 const ProductDetail = () => {
   return (

@@ -6,7 +6,7 @@ import CartPage from './pages/Cart/CartPage';
 import CollectionsPage from './pages/Collections/CollectionsPage';
 import SignUpPage from './pages/Auth/SignUpPage';
 import LoginPage from './pages/Auth/LoginPage';
-import ProductDetailPage from './pages/ProductDetailPage'; // Added import
+import ProductDetailPage from './pages/prouductdetail/productDetailPage'; // Added import
 
 import './App.css';
 
