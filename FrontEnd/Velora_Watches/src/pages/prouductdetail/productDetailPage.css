@@ -93,3 +93,38 @@
     margin-bottom: 10px;
   }
   
+
+.product-not-found {
+  text-align: center;
+  padding: 3rem 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #333;
+}
+
+.thumbnail.active {
+  border: 2px solid #0070f3;
+}
+
+.features {
+  margin-bottom: 20px;
+}
+
+.features ul {
+  padding-left: 20px;
+}
