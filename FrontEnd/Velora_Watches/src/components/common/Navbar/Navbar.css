@@ -342,3 +342,57 @@
     font-size: 1rem;
   }
 }
+
+/* Updated user menu styles */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Increased gap between elements */
+  height: auto;
+  margin-left: 1rem;
+}
+
+.welcome-user {
+  color: #f5f5f592;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.logout-btn {
+  padding: 8px 14px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Mobile view adjustments */
+@media screen and (max-width: 768px) {
+  .user-menu {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  
+  .welcome-user {
+    padding: 0 10px;
+    font-size: 1.08rem;
+  }
+  
+  .logout-btn {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+}

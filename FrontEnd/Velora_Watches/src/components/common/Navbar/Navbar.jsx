@@ -53,7 +53,7 @@ const Navbar = () => {
           {/* Conditional rendering based on authentication state */}
           {user ? (
             <li className="user-menu">
-              <span className="welcome-user">Hello, {firstName}</span>
+              <span className="welcome-user">{firstName}'s Dashboard</span>
               <button onClick={handleLogout} className="logout-btn">Logout</button>
             </li>
           ) : (
