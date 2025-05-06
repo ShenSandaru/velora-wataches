@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useUser } from '../../../Context/UserContext';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useUser();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -27,6 +28,15 @@ const Navbar = () => {
     closeMenu();
   };
 
+  // Check if current path matches link path
+  const isActive = (path) => {
+    // Exact match for home, starts-with for other routes
+    if (path === "/") {
+      return location.pathname === path ? "active" : "";
+    }
+    return location.pathname.startsWith(path) ? "active" : "";
+  };
+
   // Extract first name from full name
   const firstName = user?.name ? user.name.split(' ')[0] : '';
 
@@ -45,21 +55,23 @@ const Navbar = () => {
         </div>
         {isOpen && <div className="nav-overlay" onClick={closeMenu}></div>}
         <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
-          <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-          <li><Link to="/collections" onClick={closeMenu}>Collections</Link></li>
-          <li><Link to="/products" onClick={closeMenu}>All Watches</Link></li>
-          <li><Link to="/cart" onClick={closeMenu}>Cart</Link></li>
+          <li><Link to="/" onClick={closeMenu} className={isActive("/")}>Home</Link></li>
+          <li><Link to="/collections" onClick={closeMenu} className={isActive("/collections")}>Collections</Link></li>
+          <li><Link to="/products" onClick={closeMenu} className={isActive("/products")}>All Watches</Link></li>
+          <li><Link to="/cart" onClick={closeMenu} className={isActive("/cart")}>Cart</Link></li>
           
           {/* Conditional rendering based on authentication state */}
           {user ? (
             <li className="user-menu">
-              <span className="welcome-user">{firstName}'s Dashboard</span>
+              <Link to="/dashboard" onClick={closeMenu} className={`welcome-user ${isActive("/dashboard")}`}>
+                {firstName}'s Dashboard
+              </Link>
               <button onClick={handleLogout} className="logout-btn">Logout</button>
             </li>
           ) : (
             <li className="auth-links">
-              <Link to="/login" onClick={closeMenu} className="login-link">Login</Link>
-              <Link to="/signup" onClick={closeMenu} className="signup-link">Sign Up</Link>
+              <Link to="/login" onClick={closeMenu} className={`login-link ${isActive("/login")}`}>Login</Link>
+              <Link to="/signup" onClick={closeMenu} className={`signup-link ${isActive("/signup")}`}>Sign Up</Link>
             </li>
           )}
         </ul>
