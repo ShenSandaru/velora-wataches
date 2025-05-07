@@ -217,6 +217,33 @@
   display: none;
 }
 
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.logout-btn {
+  background: #ff4d4d; /* Red background for logout button */
+  color: #ffffff; /* White text color */
+  padding: 0.5rem 1rem;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.welcome-user {
+  color: #05eb2c; /* White text color */
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
 @media screen and (max-width: 900px) {
   .navbar {
     padding: 0 0.7rem;
