@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useUser } from '../../../Context/UserContext';
 import './Navbar.css';
 
@@ -7,6 +7,33 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useUser();
   const location = useLocation();
+  const navigate = useNavigate();
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+
+  // Load cart items from localStorage and calculate count
+  useEffect(() => {
+    const updateCartCount = () => {
+      try {
+        const savedCartItems = localStorage.getItem('cartItems');
+        const cartItems = savedCartItems ? JSON.parse(savedCartItems) : [];
+        setCartItemsCount(cartItems.length);
+      } catch (error) {
+        console.error('Error parsing cart items:', error);
+        setCartItemsCount(0);
+      }
+    };
+
+    // Update count when component mounts
+    updateCartCount();
+
+    // Listen for storage changes (when cart is updated from another tab/window)
+    window.addEventListener('storage', updateCartCount);
+
+    // Clean up listener
+    return () => {
+      window.removeEventListener('storage', updateCartCount);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -26,6 +53,22 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
     closeMenu();
+  };
+
+  // Handle cart click - redirect to login if not logged in
+  const handleCartClick = (e) => {
+    if (!user) {
+      e.preventDefault();
+      closeMenu();
+      navigate('/login', { 
+        state: { 
+          message: 'Please log in to view your shopping cart',
+          returnPath: '/cart'
+        } 
+      });
+    } else {
+      closeMenu();
+    }
   };
 
   // Check if current path matches link path
@@ -58,7 +101,16 @@ const Navbar = () => {
           <li><Link to="/" onClick={closeMenu} className={isActive("/")}>Home</Link></li>
           <li><Link to="/collections" onClick={closeMenu} className={isActive("/collections")}>Collections</Link></li>
           <li><Link to="/products" onClick={closeMenu} className={isActive("/products")}>All Watches</Link></li>
-          <li><Link to="/cart" onClick={closeMenu} className={isActive("/cart")}>Cart</Link></li>
+          <li className="cart-menu-item">
+            <Link to="/cart" onClick={handleCartClick} className={`cart-icon-link ${isActive("/cart")}`}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              {cartItemsCount > 0 && <span className="cart-count">{cartItemsCount}</span>}
+            </Link>
+          </li>
           
           {/* Conditional rendering based on authentication state */}
           {user ? (

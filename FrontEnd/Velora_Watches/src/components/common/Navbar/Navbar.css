@@ -217,6 +217,33 @@
   display: none;
 }
 
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.logout-btn {
+  background: #ff4d4d; /* Red background for logout button */
+  color: #ffffff; /* White text color */
+  padding: 0.5rem 1rem;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.welcome-user {
+  color: #05eb2c; /* White text color */
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
 @media screen and (max-width: 900px) {
   .navbar {
     padding: 0 0.7rem;
@@ -394,5 +421,63 @@
     width: 100%;
     padding: 10px;
     text-align: center;
+  }
+}
+
+/* Cart icon styles */
+.cart-icon-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.7rem !important;
+}
+
+.cart-count {
+  position: absolute;
+  top: 12px;
+  right: 2px;
+  background-color: #ffd700;
+  color: #0a0a0a;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.cart-icon-link:hover .cart-count {
+  transform: scale(1.1);
+}
+
+.cart-menu-item {
+  margin-right: 0.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .cart-icon-link {
+    padding: 0.9rem 1rem !important;
+    justify-content: flex-start;
+  }
+  
+  .cart-icon-link svg {
+    margin-right: 10px;
+  }
+  
+  .cart-count {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-left: 8px;
+  }
+  
+  /* Add a label for mobile view */
+  .cart-icon-link::after {
+    content: 'Cart';
+    margin-left: 8px;
   }
 }
