@@ -7,6 +7,8 @@ import CartPage from './pages/Cart/CartPage';
 import CollectionsPage from './pages/Collections/CollectionsPage';
 import SignUpPage from './pages/Auth/SignUpPage';
 import LoginPage from './pages/Auth/LoginPage';
+import ProductDetailPage from './pages/prouductdetail/productDetailPage';
+import DashboardPage  from './pages/Dashboard/DashboardPage';
 import './App.css';
 
 function App() {
@@ -18,9 +20,11 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/collections" element={<CollectionsPage />} />
             <Route path="/products" element={<ProductsPage />} />
+            <Route path='/product/:productId' element={<ProductDetailPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path='/signup' element={<SignUpPage />} />
             <Route path='/login' element={<LoginPage />} />
+            <Route path='/dashboard' element={<DashboardPage />} />
           </Routes>
         </div>
       </BrowserRouter>

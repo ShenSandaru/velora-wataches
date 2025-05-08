@@ -2,10 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
 import WatchCards from './WatchCards/WatchCards';
+import NewsletterService from './NewsletterService/NewsletterService';
+import { homeData } from '../../data/homeData';
 import './HomePage.css';
 
 const HomePage = () => {
+<<<<<<< Updated upstream
+  const reviews = [
+=======
+  // Destructure data from our homeData file
+  const { reviews, collections, features, specialOffer } = homeData;
+
   const reviewsData = [
+>>>>>>> Stashed changes
     {
       name: 'Nabeel Safwan',
       time: '8 months ago',
@@ -23,7 +32,11 @@ const HomePage = () => {
     },
     {
       name: 'Kirushan Gokularatna',
+<<<<<<< Updated upstream
+      time: 'a year ago',
+=======
       time: '6 months ago',
+>>>>>>> Stashed changes
       stars: '★★★★★',
       content:
         'Bought a premium watch from them, gotta say they got some authentic and legit stuff. Looking to purchase more products from them!',
@@ -31,49 +44,13 @@ const HomePage = () => {
     },
     {
       name: 'Shavingya Vihanga',
-      time: '1 day ago',
+      time: 'a year ago',
       stars: '★★★★★',
       content:
         'Highly Recommended. Bought and Paid online, very reliable. The only place which has premium watches for reasonable prices.',
       profilePhoto: 'https://via.placeholder.com/50',
     },
   ];
-
-  const collections = [
-    {
-      image:
-        'https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/watch5.png',
-      title: 'Luxury Collection',
-      link: '/collections?category=luxury',
-    },
-    {
-      image:
-        'https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/watch6.png',
-      title: 'Sport Collection',
-      link: '/collections?category=sport',
-    },
-    {
-      image:
-        'https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/watch7.png',
-      title: 'Classic Collection',
-      link: '/collections?category=classic',
-    },
-  ];
-
-  const features = [
-    { title: 'Shipping', description: 'All Island Delivery' },
-    { title: 'Genuine', description: 'Only Authentic Products' },
-    { title: 'Accredited', description: 'TRCSL Approved Vendor' },
-    { title: 'Trusted Seller', description: '99% Positive Feedbacks' },
-  ];
-
-  const specialOffer = {
-    image:
-      'https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/Black%20Elegant%20Watch%20Special%20Offer%20Instagram%20Post-2%5B1%5D.jpg',
-    title: 'Special Offer',
-    description: 'Get 50% off on premium watches',
-    link: '/products',
-  };
 
   return (
     <MainLayout>
@@ -139,7 +116,7 @@ const HomePage = () => {
 
           <div className="reviews-container">
             <div className="reviews-grid">
-              {reviewsData.map((review, index) => (
+              {reviews.map((review, index) => (
                 <div className="review-card" key={`review-${index}`}>
                   <div className="reviewer-info">
                     <img
@@ -152,13 +129,13 @@ const HomePage = () => {
                       <span className="review-time">{review.time}</span>
                     </div>
                   </div>
-                  {review.stars && <div className="review-stars">{review.stars}</div>}
+                  <div className="review-stars">{review.stars}</div>
                   <p className="review-content">{review.content}</p>
                 </div>
               ))}
 
               {/* Duplicate reviews for continuous scroll effect */}
-              {reviewsData.map((review, index) => (
+              {reviews.map((review, index) => (
                 <div className="review-card" key={`review-clone-${index}`}>
                   <div className="reviewer-info">
                     <img
@@ -171,7 +148,7 @@ const HomePage = () => {
                       <span className="review-time">{review.time}</span>
                     </div>
                   </div>
-                  {review.stars && <div className="review-stars">{review.stars}</div>}
+                  <div className="review-stars">{review.stars}</div>
                   <p className="review-content">{review.content}</p>
                 </div>
               ))}
@@ -189,6 +166,7 @@ const HomePage = () => {
         </section>
 
         {/* Newsletter Section */}
+<<<<<<< Updated upstream
         <section className="newsletter-section">
           <div className="newsletter-content">
             <h2>Stay Updated</h2>
@@ -205,6 +183,9 @@ const HomePage = () => {
             </form>
           </div>
         </section>
+=======
+        <NewsletterService />
+>>>>>>> Stashed changes
       </div>
     </MainLayout>
   );

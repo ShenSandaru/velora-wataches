@@ -2,7 +2,7 @@ import React from 'react';
 import './WatchCards.css';
 
 const WatchCards = () => {
-  const watches = [
+  const watchCardsData = [
     {
       id: 1,
       name: "Classic Silver",
@@ -51,7 +51,7 @@ const WatchCards = () => {
     <section className="watch-ads">
       <h2>Featured Collection</h2>
       <div className="watch-grid">
-        {watches.map(watch => (
+        {watchCardsData.map(watch => (
           <div key={watch.id} className="card">
             <div className="card-inner">
               <div className="card-front">
