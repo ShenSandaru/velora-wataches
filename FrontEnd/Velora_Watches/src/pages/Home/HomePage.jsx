@@ -5,12 +5,20 @@ import WatchCards from './WatchCards/WatchCards';
 import './HomePage.css';
 
 const HomePage = () => {
+<<<<<<< Updated upstream
   const reviews = [
+=======
+  // Destructure data from our homeData file
+  const { reviews, collections, features, specialOffer } = homeData;
+
+  const reviewsData = [
+>>>>>>> Stashed changes
     {
       name: 'Nabeel Safwan',
       time: '8 months ago',
       stars: '★★★★★',
       content: 'Very good service and affordable prices.',
+      profilePhoto: 'https://via.placeholder.com/50', // Example profile photo
     },
     {
       name: 'Aruna Jayasinghe',
@@ -18,13 +26,19 @@ const HomePage = () => {
       stars: '★★★★★',
       content:
         'I have been looking for quality value for money watches and found Velora the perfect place. Service was excellent and support was great.',
+      profilePhoto: 'https://via.placeholder.com/50',
     },
     {
       name: 'Kirushan Gokularatna',
+<<<<<<< Updated upstream
       time: 'a year ago',
+=======
+      time: '6 months ago',
+>>>>>>> Stashed changes
       stars: '★★★★★',
       content:
         'Bought a premium watch from them, gotta say they got some authentic and legit stuff. Looking to purchase more products from them!',
+      profilePhoto: 'https://via.placeholder.com/50',
     },
     {
       name: 'Shavingya Vihanga',
@@ -32,6 +46,7 @@ const HomePage = () => {
       stars: '★★★★★',
       content:
         'Highly Recommended. Bought and Paid online, very reliable. The only place which has premium watches for reasonable prices.',
+      profilePhoto: 'https://via.placeholder.com/50',
     },
   ];
 
@@ -107,7 +122,7 @@ const HomePage = () => {
               <h2 className="reviews-title">Velora Watches</h2>
               <div className="reviews-rating">
                 <span className="stars">★★★★★</span>
-                <span>4.8</span>
+                <span className="rating-value">4.8</span>
               </div>
               <div className="google-powered">powered by Google</div>
               <a href="#" className="review-us">
@@ -118,9 +133,10 @@ const HomePage = () => {
 
           <div className="reviews-container">
             <div className="reviews-grid">
-              {reviews.map((review, index) => (
+              {reviewsData.map((review, index) => (
                 <div className="review-card" key={`review-${index}`}>
                   <div className="reviewer-info">
+<<<<<<< Updated upstream
                   <img 
       src={review.profilePhoto} 
       alt={`${review.name}'s profile`} 
@@ -130,6 +146,17 @@ const HomePage = () => {
                     <span className="reviewer-name">{review.name}</span>
                     <span className="review-time">{review.time}</span>
                   </div>
+=======
+                    <img
+                      src={review.profilePhoto}
+                      alt={`${review.name}'s profile`}
+                      className="reviewer-photo"
+                    />
+                    <div className="reviewer-details">
+                      <span className="reviewer-name">{review.name}</span>
+                      <span className="review-time">{review.time}</span>
+                    </div>
+>>>>>>> Stashed changes
                   </div>
                   {review.stars && <div className="review-stars">{review.stars}</div>}
                   <p className="review-content">{review.content}</p>
@@ -137,8 +164,9 @@ const HomePage = () => {
               ))}
 
               {/* Duplicate reviews for continuous scroll effect */}
-              {reviews.map((review, index) => (
+              {reviewsData.map((review, index) => (
                 <div className="review-card" key={`review-clone-${index}`}>
+<<<<<<< Updated upstream
                   <div className="reviewer-info">    <img 
       src={review.profilePhoto} 
       alt={`${review.name}'s profile`} 
@@ -148,6 +176,18 @@ const HomePage = () => {
                     <span className="reviewer-name">{review.name}</span>
                     <span className="review-time">{review.time}</span>
                   </div>
+=======
+                  <div className="reviewer-info">
+                    <img
+                      src={review.profilePhoto}
+                      alt={`${review.name}'s profile`}
+                      className="reviewer-photo"
+                    />
+                    <div className="reviewer-details">
+                      <span className="reviewer-name">{review.name}</span>
+                      <span className="review-time">{review.time}</span>
+                    </div>
+>>>>>>> Stashed changes
                   </div>
                   {review.stars && <div className="review-stars">{review.stars}</div>}
                   <p className="review-content">{review.content}</p>
@@ -184,6 +224,7 @@ const HomePage = () => {
         </section>
 
         {/* Newsletter Section */}
+<<<<<<< Updated upstream
         <section className="newsletter-section">
           <div className="newsletter-content">
             <h2>Stay Updated</h2>
@@ -200,6 +241,9 @@ const HomePage = () => {
             </form>
           </div>
         </section>
+=======
+        <NewsletterService />
+>>>>>>> Stashed changes
       </div>
     </MainLayout>
   );
