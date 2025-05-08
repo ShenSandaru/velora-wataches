@@ -7,40 +7,7 @@ import { homeData } from '../../data/homeData';
 import './HomePage.css';
 
 const HomePage = () => {
-<<<<<<< Updated upstream
-  // Destructure data from our homeData file
   const { reviews, collections, features, specialOffer } = homeData;
-=======
-  const reviews = [
-    {
-      name: 'Nabeel Safwan',
-      time: '8 months ago',
-      stars: '★★★★★',
-      content: 'Very good service and affordable prices.',
-    },
-    {
-      name: 'Aruna Jayasinghe',
-      time: '1 year ago',
-      stars: '★★★★★',
-      content:
-        'I have been looking for quality value for money watches and found Velora the perfect place. Service was excellent and support was great.',
-    },
-    {
-      name: 'Kirushan Gokularatna',
-      time: '6 month ago',
-      stars: '★★★★★',
-      content:
-        'Bought a premium watch from them, gotta say they got some authentic and legit stuff. Looking to purchase more products from them!',
-    },
-    {
-      name: 'Shavingya Vihanga',
-      time: '1 day ago',
-      stars: '★★★★★',
-      content:
-        'Highly Recommended. Bought and Paid online, very reliable. The only place which has premium watches for reasonable prices.',
-    },
-  ];
->>>>>>> Stashed changes
 
   return (
     <MainLayout>
@@ -95,7 +62,7 @@ const HomePage = () => {
               <h2 className="reviews-title">Velora Watches</h2>
               <div className="reviews-rating">
                 <span className="stars">★★★★★</span>
-                <span>4.8</span>
+                <span className="rating-value">4.8</span>
               </div>
               <div className="google-powered">powered by Google</div>
               <a href="#" className="review-us">
@@ -109,17 +76,17 @@ const HomePage = () => {
               {reviews.map((review, index) => (
                 <div className="review-card" key={`review-${index}`}>
                   <div className="reviewer-info">
-                    <img 
-                      src={review.profilePhoto} 
-                      alt={`${review.name}'s profile`} 
-                      className="reviewer-photo" 
+                    <img
+                      src={review.profilePhoto}
+                      alt={`${review.name}'s profile`}
+                      className="reviewer-photo"
                     />
                     <div className="reviewer-details">
                       <span className="reviewer-name">{review.name}</span>
                       <span className="review-time">{review.time}</span>
                     </div>
                   </div>
-                  {review.stars && <div className="review-stars">{review.stars}</div>}
+                  <div className="review-stars">{review.stars}</div>
                   <p className="review-content">{review.content}</p>
                 </div>
               ))}
@@ -128,17 +95,17 @@ const HomePage = () => {
               {reviews.map((review, index) => (
                 <div className="review-card" key={`review-clone-${index}`}>
                   <div className="reviewer-info">
-                    <img 
-                      src={review.profilePhoto} 
-                      alt={`${review.name}'s profile`} 
-                      className="reviewer-photo" 
+                    <img
+                      src={review.profilePhoto}
+                      alt={`${review.name}'s profile`}
+                      className="reviewer-photo"
                     />
                     <div className="reviewer-details">
                       <span className="reviewer-name">{review.name}</span>
                       <span className="review-time">{review.time}</span>
                     </div>
                   </div>
-                  {review.stars && <div className="review-stars">{review.stars}</div>}
+                  <div className="review-stars">{review.stars}</div>
                   <p className="review-content">{review.content}</p>
                 </div>
               ))}
@@ -155,7 +122,7 @@ const HomePage = () => {
           </div>
         </section>
 
-        {/* Newsletter Section - Now using the component */}
+        {/* Newsletter Section */}
         <NewsletterService />
       </div>
     </MainLayout>
@@ -163,3 +130,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
