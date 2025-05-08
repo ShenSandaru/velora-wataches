@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
 import WatchCards from './WatchCards/WatchCards';
+import NewsletterService from './NewsletterService/NewsletterService';
 import { homeData } from '../../data/homeData';
 import './HomePage.css';
 
@@ -122,23 +123,8 @@ const HomePage = () => {
           </div>
         </section>
 
-        {/* Newsletter Section */}
-        <section className="newsletter-section">
-          <div className="newsletter-content">
-            <h2>Stay Updated</h2>
-            <p>Subscribe to our newsletter for exclusive offers and updates</p>
-            <form className="newsletter-form">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="newsletter-input"
-              />
-              <button type="submit" className="newsletter-btn">
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </section>
+        {/* Newsletter Section - Now using the component */}
+        <NewsletterService />
       </div>
     </MainLayout>
   );
