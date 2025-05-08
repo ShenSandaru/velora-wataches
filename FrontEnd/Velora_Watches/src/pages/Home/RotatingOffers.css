@@ -1,0 +1,167 @@
+/* Rotating Offers Section - 3D Carousel Style */
+.rotating-offers {
+  padding: 5rem 2rem;
+  background-color: #f9f9f9;
+  text-align: center;
+  position: relative;
+  height: 480px;
+  perspective: 1200px; /* Enhanced 3D perspective */
+}
+
+.offers-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: carouselRotate 25s linear infinite;
+  margin: 0 auto;
+}
+
+/* Pause animation on hover */
+.offers-container:hover {
+  animation-play-state: paused;
+}
+
+.offer-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 240px; /* Adjusted width for better fit */
+  height: 320px; /* Adjusted height to maintain aspect ratio */
+  background-color: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backface-visibility: hidden;
+}
+
+.offer-card:hover {
+  transform: translateZ(50px) scale(1.1); /* Bring card forward on hover */
+  z-index: 10; /* Ensure it's on top */
+}
+
+.offer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the area without distortion */
+  border-radius: 12px; /* Match card border radius */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.offer-card:hover .offer-image {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Remove content-related styles since we're only displaying images */
+.offer-content,
+.offer-title,
+.offer-description {
+  display: none;
+}
+
+/* 3D Carousel Animation */
+@keyframes carouselRotate {
+  0% {
+    transform: translateZ(-350px) rotateY(0deg);
+  }
+  100% {
+    transform: translateZ(-350px) rotateY(-360deg);
+  }
+}
+
+/* Position cards in 3D space */
+.offer-card:nth-child(1) {
+  transform: rotateY(0deg) translateZ(350px);
+}
+
+.offer-card:nth-child(2) {
+  transform: rotateY(72deg) translateZ(350px);
+}
+
+.offer-card:nth-child(3) {
+  transform: rotateY(144deg) translateZ(350px);
+}
+
+.offer-card:nth-child(4) {
+  transform: rotateY(216deg) translateZ(350px);
+}
+
+.offer-card:nth-child(5) {
+  transform: rotateY(288deg) translateZ(350px);
+}
+
+/* Enhanced Lighting Effect */
+.rotating-offers::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rotating-offers {
+    perspective: 800px;
+    height: 400px;
+  }
+  
+  .offer-card {
+    width: 180px;
+    height: 240px;
+  }
+  
+  .offer-card:nth-child(1),
+  .offer-card:nth-child(2),
+  .offer-card:nth-child(3),
+  .offer-card:nth-child(4),
+  .offer-card:nth-child(5) {
+    transform-origin: center;
+  }
+  
+  .offer-card:nth-child(1) { transform: rotateY(0deg) translateZ(250px); }
+  .offer-card:nth-child(2) { transform: rotateY(72deg) translateZ(250px); }
+  .offer-card:nth-child(3) { transform: rotateY(144deg) translateZ(250px); }
+  .offer-card:nth-child(4) { transform: rotateY(216deg) translateZ(250px); }
+  .offer-card:nth-child(5) { transform: rotateY(288deg) translateZ(250px); }
+  
+  @keyframes carouselRotate {
+    0% {
+      transform: translateZ(-250px) rotateY(0deg);
+    }
+    100% {
+      transform: translateZ(-250px) rotateY(-360deg);
+    }
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .offer-card {
+    width: 160px;
+    height: 210px;
+  }
+  
+  .offer-card:nth-child(1) { transform: rotateY(0deg) translateZ(200px); }
+  .offer-card:nth-child(2) { transform: rotateY(72deg) translateZ(200px); }
+  .offer-card:nth-child(3) { transform: rotateY(144deg) translateZ(200px); }
+  .offer-card:nth-child(4) { transform: rotateY(216deg) translateZ(200px); }
+  .offer-card:nth-child(5) { transform: rotateY(288deg) translateZ(200px); }
+  
+  @keyframes carouselRotate {
+    0% {
+      transform: translateZ(-200px) rotateY(0deg);
+    }
+    100% {
+      transform: translateZ(-200px) rotateY(-360deg);
+    }
+  }
+}

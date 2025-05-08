@@ -3,85 +3,76 @@ import { Link } from 'react-router-dom';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
 import WatchCards from './WatchCards/WatchCards';
 import NewsletterService from './NewsletterService/NewsletterService';
+import RotatingOffers from './RotatingOffers';
 import { homeData } from '../../data/homeData';
 import './HomePage.css';
 
 const HomePage = () => {
-<<<<<<< Updated upstream
-  const reviews = [
-=======
   // Destructure data from our homeData file
   const { reviews, collections, features, specialOffer } = homeData;
-
-  const reviewsData = [
->>>>>>> Stashed changes
-    {
-      name: 'Nabeel Safwan',
-      time: '8 months ago',
-      stars: '★★★★★',
-      content: 'Very good service and affordable prices.',
-      profilePhoto: 'https://via.placeholder.com/50', // Example profile photo
-    },
-    {
-      name: 'Aruna Jayasinghe',
-      time: 'a year ago',
-      stars: '★★★★★',
-      content:
-        'I have been looking for quality value for money watches and found Velora the perfect place. Service was excellent and support was great.',
-      profilePhoto: 'https://via.placeholder.com/50',
-    },
-    {
-      name: 'Kirushan Gokularatna',
-<<<<<<< Updated upstream
-      time: 'a year ago',
-=======
-      time: '6 months ago',
->>>>>>> Stashed changes
-      stars: '★★★★★',
-      content:
-        'Bought a premium watch from them, gotta say they got some authentic and legit stuff. Looking to purchase more products from them!',
-      profilePhoto: 'https://via.placeholder.com/50',
-    },
-    {
-      name: 'Shavingya Vihanga',
-      time: 'a year ago',
-      stars: '★★★★★',
-      content:
-        'Highly Recommended. Bought and Paid online, very reliable. The only place which has premium watches for reasonable prices.',
-      profilePhoto: 'https://via.placeholder.com/50',
-    },
-  ];
 
   return (
     <MainLayout>
       <div className="home-page">
-        {/* Hero Section */}
-        <section className="hero-section">
-          <div className="hero-content">
-            <h1>Welcome to Velora Watches</h1>
-            <p>Discover our collection of premium timepieces</p>
-            <Link to="/products">
-              <button className="shop-now-btn">Shop Now</button>
-            </Link>
-          </div>
-        </section>
+                                {/* Modified Hero Section with RotatingOffers */}
+                <section className="hero-combined-section">
+                  <div className="hero-section">
+                    <div className="hero-content">
+                      <h1 className="hero-title">Welcome to Velora Watches</h1>
+                      <p className="hero-subtitle">Discover our collection of premium timepieces crafted with precision and elegance</p>
+                      <Link to="/products">
+                        <button className="hero-btn">Shop Now</button>
+                      </Link>
+                    </div>
+                  </div>
+                  
+                  <div className="hero-rotating-offers">
+                    <RotatingOffers />
+                  </div>
+                </section>
+
+     {/* REMOVED: Second RotatingOffers component that was here */}
 
         {/* Featured Watches Section */}
         <WatchCards />
 
         {/* Special Offer Section */}
         <section className="special-offer">
-          <img
-            src={specialOffer.image}
-            alt="Special Offer"
-            className="offer-image"
-          />
-          <div className="offer-content">
-            <h2>{specialOffer.title}</h2>
-            <p>{specialOffer.description}</p>
-            <Link to={specialOffer.link}>
-              <button className="offer-btn">Shop Now</button>
-            </Link>
+          {/* Special offer content... */}
+          <div className="special-offer-container">
+            <div className="special-offer-image">
+              <img 
+                src={specialOffer.image} 
+                alt="Special Offer" 
+              />
+              <div className="special-offer-badge">
+                <span>Limited Time</span>
+              </div>
+            </div>
+            <div className="special-offer-content">
+              <span className="special-offer-label">Exclusive Deal</span>
+              <h2>{specialOffer.title}</h2>
+              <p>{specialOffer.description}</p>
+              <div className="special-offer-cta">
+                <Link to={specialOffer.link}>
+                  <button className="special-offer-btn">Shop Now</button>
+                </Link>
+                <div className="special-offer-timer">
+                  <div className="timer-item">
+                    <span className="timer-value">14</span>
+                    <span className="timer-label">Days</span>
+                  </div>
+                  <div className="timer-item">
+                    <span className="timer-value">08</span>
+                    <span className="timer-label">Hours</span>
+                  </div>
+                  <div className="timer-item">
+                    <span className="timer-value">36</span>
+                    <span className="timer-label">Mins</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -166,26 +157,7 @@ const HomePage = () => {
         </section>
 
         {/* Newsletter Section */}
-<<<<<<< Updated upstream
-        <section className="newsletter-section">
-          <div className="newsletter-content">
-            <h2>Stay Updated</h2>
-            <p>Subscribe to our newsletter for exclusive offers and updates</p>
-            <form className="newsletter-form">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="newsletter-input"
-              />
-              <button type="submit" className="newsletter-btn">
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </section>
-=======
         <NewsletterService />
->>>>>>> Stashed changes
       </div>
     </MainLayout>
   );
