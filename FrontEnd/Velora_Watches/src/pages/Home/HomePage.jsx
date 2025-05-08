@@ -7,8 +7,40 @@ import { homeData } from '../../data/homeData';
 import './HomePage.css';
 
 const HomePage = () => {
+<<<<<<< Updated upstream
   // Destructure data from our homeData file
   const { reviews, collections, features, specialOffer } = homeData;
+=======
+  const reviews = [
+    {
+      name: 'Nabeel Safwan',
+      time: '8 months ago',
+      stars: '★★★★★',
+      content: 'Very good service and affordable prices.',
+    },
+    {
+      name: 'Aruna Jayasinghe',
+      time: '1 year ago',
+      stars: '★★★★★',
+      content:
+        'I have been looking for quality value for money watches and found Velora the perfect place. Service was excellent and support was great.',
+    },
+    {
+      name: 'Kirushan Gokularatna',
+      time: '6 month ago',
+      stars: '★★★★★',
+      content:
+        'Bought a premium watch from them, gotta say they got some authentic and legit stuff. Looking to purchase more products from them!',
+    },
+    {
+      name: 'Shavingya Vihanga',
+      time: '1 day ago',
+      stars: '★★★★★',
+      content:
+        'Highly Recommended. Bought and Paid online, very reliable. The only place which has premium watches for reasonable prices.',
+    },
+  ];
+>>>>>>> Stashed changes
 
   return (
     <MainLayout>
