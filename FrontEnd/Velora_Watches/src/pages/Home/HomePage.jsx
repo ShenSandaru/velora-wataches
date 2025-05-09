@@ -11,6 +11,44 @@ const HomePage = () => {
   // Destructure data from our homeData file
   const { reviews, collections, features, specialOffer } = homeData;
 
+
+
+  const reviewsData = [
+
+    {
+      name: 'Nabeel Safwan',
+      time: '8 months ago',
+      stars: '★★★★★',
+      content: 'Very good service and affordable prices.',
+      profilePhoto: 'https://via.placeholder.com/50', // Example profile photo
+    },
+    {
+      name: 'Aruna Jayasinghe',
+      time: 'a year ago',
+      stars: '★★★★★',
+      content:
+        'I have been looking for quality value for money watches and found Velora the perfect place. Service was excellent and support was great.',
+      profilePhoto: 'https://via.placeholder.com/50',
+    },
+    {
+      name: 'Kirushan Gokularatna',
+      time: '6 months ago',
+      stars: '★★★★★',
+      content:
+        'Bought a premium watch from them, gotta say they got some authentic and legit stuff. Looking to purchase more products from them!',
+      profilePhoto: 'https://via.placeholder.com/50',
+    },
+    {
+      name: 'Shavingya Vihanga',
+      time: 'a year ago',
+      stars: '★★★★★',
+      content:
+        'Highly Recommended. Bought and Paid online, very reliable. The only place which has premium watches for reasonable prices.',
+      profilePhoto: 'https://via.placeholder.com/50',
+    },
+  ];
+
+
   return (
     <MainLayout>
       <div className="home-page">
