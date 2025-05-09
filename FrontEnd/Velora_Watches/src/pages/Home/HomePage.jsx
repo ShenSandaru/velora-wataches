@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
 import WatchCards from './WatchCards/WatchCards';
 import NewsletterService from './NewsletterService/NewsletterService';
-import RotatingOffers from './RotatingOffers';
+import RotatingOffers from './Rotating offerces/RotatingOffers';
+import ExclusiveDeal from './ExclusiveDeal/ExclusiveDeal';
 import { homeData } from '../../data/homeData';
 import './HomePage.css';
 
@@ -11,10 +12,7 @@ const HomePage = () => {
   // Destructure data from our homeData file
   const { reviews, collections, features, specialOffer } = homeData;
 
-
-
   const reviewsData = [
-
     {
       name: 'Nabeel Safwan',
       time: '8 months ago',
@@ -48,71 +46,31 @@ const HomePage = () => {
     },
   ];
 
-
   return (
     <MainLayout>
       <div className="home-page">
-                                {/* Modified Hero Section with RotatingOffers */}
-                <section className="hero-combined-section">
-                  <div className="hero-section">
-                    <div className="hero-content">
-                      <h1 className="hero-title">Welcome to Velora Watches</h1>
-                      <p className="hero-subtitle">Discover our collection of premium timepieces crafted with precision and elegance</p>
-                      <Link to="/products">
-                        <button className="hero-btn">Shop Now</button>
-                      </Link>
-                    </div>
-                  </div>
+        {/* Modified Hero Section with RotatingOffers */}
+        <section className="hero-combined-section">
+          <div className="hero-section">
+            <div className="hero-content">
+              <h1 className="hero-title">Welcome to Velora Watches</h1>
+              <p className="hero-subtitle">Discover our collection of premium timepieces crafted with precision and elegance</p>
+              <Link to="/products">
+                <button className="hero-btn">Shop Now</button>
+              </Link>
+            </div>
+          </div>
                   
-                  <div className="hero-rotating-offers">
-                    <RotatingOffers />
-                  </div>
-                </section>
-
-     {/* REMOVED: Second RotatingOffers component that was here */}
+          <div className="hero-rotating-offers">
+            <RotatingOffers />
+          </div>
+        </section>
 
         {/* Featured Watches Section */}
         <WatchCards />
 
-        {/* Special Offer Section */}
-        <section className="special-offer">
-          {/* Special offer content... */}
-          <div className="special-offer-container">
-            <div className="special-offer-image">
-              <img 
-                src={specialOffer.image} 
-                alt="Special Offer" 
-              />
-              <div className="special-offer-badge">
-                <span>Limited Time</span>
-              </div>
-            </div>
-            <div className="special-offer-content">
-              <span className="special-offer-label">Exclusive Deal</span>
-              <h2>{specialOffer.title}</h2>
-              <p>{specialOffer.description}</p>
-              <div className="special-offer-cta">
-                <Link to={specialOffer.link}>
-                  <button className="special-offer-btn">Shop Now</button>
-                </Link>
-                <div className="special-offer-timer">
-                  <div className="timer-item">
-                    <span className="timer-value">14</span>
-                    <span className="timer-label">Days</span>
-                  </div>
-                  <div className="timer-item">
-                    <span className="timer-value">08</span>
-                    <span className="timer-label">Hours</span>
-                  </div>
-                  <div className="timer-item">
-                    <span className="timer-value">36</span>
-                    <span className="timer-label">Mins</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Special Offer Section - Now using the separate component */}
+        <ExclusiveDeal specialOffer={specialOffer} />
 
         {/* Collection Showcase Section */}
         <section className="collection-showcase">

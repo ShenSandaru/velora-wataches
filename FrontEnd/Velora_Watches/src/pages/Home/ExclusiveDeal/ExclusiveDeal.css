@@ -1,0 +1,122 @@
+/* Special Offer Section Styles */
+.special-offer {
+  padding: 60px 20px;
+  background-color: #f8f8f8;
+}
+
+.special-offer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.special-offer-image {
+  flex: 1;
+  position: relative;
+}
+
+.special-offer-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.special-offer-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #e63946;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.special-offer-content {
+  flex: 1;
+}
+
+.special-offer-label {
+  display: inline-block;
+  background-color: #f8f0e3;
+  color: #d4a056;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.special-offer-content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.special-offer-content p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.special-offer-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.special-offer-btn {
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.special-offer-btn:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+.special-offer-timer {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.timer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  min-width: 60px;
+}
+
+.timer-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.timer-label {
+  font-size: 0.8rem;
+  color: #777;
+  text-transform: uppercase;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .special-offer-container {
+    flex-direction: column;
+  }
+}
