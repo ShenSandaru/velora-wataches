@@ -507,15 +507,24 @@
   .hero-combined-section {
     grid-template-columns: 1fr;
     text-align: center;
+    min-height: auto;
+    gap: 0;
   }
   
   .hero-section {
     order: 1;
     padding: 2rem 1rem;
+    min-height: auto;
+  }
+  
+  .hero-content {
+    align-items: center;
+    padding: 1rem;
   }
   
   .hero-rotating-offers {
-    order: 2;
+    order: 0;
+    min-height: 400px;
   }
   
   .hero-btn {
@@ -537,9 +546,67 @@
   .special-offer-content h2 {
     font-size: 2rem;
   }
+  
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .reviews-container {
+    margin: 2rem 0;
+  }
+  
+  .home-page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
 
 @media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-bottom: 2rem;
+  }
+  
+  .hero-btn {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .special-offer-container {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .special-offer-content {
+    padding: 1.5rem;
+  }
+  
+  .special-offer-cta {
+    align-items: center;
+  }
+  
+  .special-offer-btn {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    padding: 0.9rem 2rem;
+  }
+  
+  .special-offer-timer {
+    width: 100%;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  
+  .timer-item {
+    min-width: 70px;
+  }
+  
   .reviews-grid {
     animation: reviewScroll 30s linear infinite;
   }
@@ -552,6 +619,7 @@
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    padding: 1.5rem 1rem;
   }
   
   @keyframes reviewScroll {
@@ -559,31 +627,77 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-290px * 4));
+      transform: translateX(calc(-270px * 4));
     }
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
   }
   
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-btn {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .hero-rotating-offers {
+    min-height: 300px;
   }
   
   .special-offer {
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
+  }
+  
+  .special-offer-badge {
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
   }
   
   .special-offer-content h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+  }
+  
+  .special-offer-content p {
+    font-size: 1rem;
   }
   
   .special-offer-timer {
-    width: 100%;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+  
+  .timer-item {
+    min-width: 60px;
+    padding: 8px;
+  }
+  
+  .timer-value {
+    font-size: 1.2rem;
+  }
+  
+  .timer-label {
+    font-size: 0.7rem;
+  }
+  
+  .collection-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .collection-item {
+    max-width: 300px;
+    margin: 0 auto;
   }
   
   .review-card {
@@ -593,6 +707,7 @@
   
   .features-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   @keyframes reviewScroll {
@@ -602,5 +717,82 @@
     100% {
       transform: translateX(calc(-260px * 4));
     }
+  }
+  
+  .reviews-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .reviews-container {
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+  }
+  
+  .reviewer-photo {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .reviewer-name {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .home-page {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  .hero-section {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .hero-content {
+    padding: 0.5rem;
+  }
+  
+  .special-offer {
+    padding: 1.5rem 0.8rem;
+  }
+  
+  .special-offer-content {
+    padding: 1.2rem 0.8rem;
+  }
+  
+  .timer-item {
+    min-width: 55px;
+    padding: 6px;
+  }
+  
+  .timer-value {
+    font-size: 1.1rem;
+  }
+  
+  .review-card {
+    width: 220px;
+    padding: 1.2rem;
+  }
+  
+  .reviewer-photo {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .review-stars {
+    font-size: 0.9rem;
+  }
+  
+  .review-content {
+    font-size: 0.9rem;
+  }
+  
+  .collection-item h3 {
+    font-size: 1.1rem;
+    padding: 0.8rem;
+  }
+  
+  .feature-card {
+    padding: 1.2rem;
   }
 }
