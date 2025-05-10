@@ -18,7 +18,7 @@
 
 .newsletter-content p {
   margin-bottom: 2rem;
-  color: #666;
+  color: #7b767f;
 }
 
 .newsletter-form {
@@ -37,7 +37,7 @@
 }
 
 .newsletter-btn {
-  background-color: #333;
+  background-color: #030154;
   color: white;
   border: none;
   border-radius: 4px;
@@ -48,7 +48,7 @@
 }
 
 .newsletter-btn:hover {
-  background-color: #555;
+  background-color: #1a17b9;
 }
 
 .newsletter-btn:disabled {
@@ -82,12 +82,69 @@
 
 /* Responsive styles */
 @media (max-width: 768px) {
+  .newsletter-section {
+    padding: 3rem 1rem;
+  }
+  
+  .newsletter-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .newsletter-content p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  
   .newsletter-form {
     flex-direction: column;
+    gap: 0.75rem;
   }
   
   .newsletter-input, .newsletter-btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .newsletter-section {
+    padding: 2.5rem 1rem;
+  }
+  
+  .newsletter-content h2 {
+    font-size: 1.6rem;
+  }
+  
+  .newsletter-content p {
+    font-size: 0.9rem;
+  }
+  
+  .newsletter-input {
+    padding: 0.7rem 0.9rem;
+  }
+  
+  .newsletter-btn {
+    padding: 0.7rem 1rem;
+  }
+  
+  .subscription-message {
+    font-size: 0.9rem;
+    padding: 0.7rem 0.9rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .newsletter-section {
+    padding: 2rem 0.8rem;
+  }
+  
+  .newsletter-content h2 {
+    font-size: 1.4rem;
+  }
+  
+  .newsletter-content p {
+    font-size: 0.85rem;
+    margin-bottom: 1.2rem;
   }
 }
 

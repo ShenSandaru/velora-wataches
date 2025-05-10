@@ -10,7 +10,7 @@ export const homeData = {
     },
     {
       name: 'Aruna Jayasinghe',
-      time: 'a year ago',
+      time: '1 year ago',
       stars: '★★★★★',
       content:
         'I have been looking for quality value for money watches and found Velora the perfect place. Service was excellent and support was great.',
@@ -18,7 +18,7 @@ export const homeData = {
     },
     {
       name: 'Kirushan Gokularatna',
-      time: 'a year ago',
+      time: '2 days ago',
       stars: '★★★★★',
       content:
         'Bought a premium watch from them, gotta say they got some authentic and legit stuff. Looking to purchase more products from them!',
@@ -26,7 +26,7 @@ export const homeData = {
     },
     {
       name: 'Shavingya Vihanga',
-      time: 'a year ago',
+      time: '1 week year ago',
       stars: '★★★★★',
       content:
         'Highly Recommended. Bought and Paid online, very reliable. The only place which has premium watches for reasonable prices.',

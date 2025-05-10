@@ -3,44 +3,74 @@ import { Link } from 'react-router-dom';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
 import WatchCards from './WatchCards/WatchCards';
 import NewsletterService from './NewsletterService/NewsletterService';
+import RotatingOffers from './Rotating offerces/RotatingOffers';
+import ExclusiveDeal from './ExclusiveDeal/ExclusiveDeal';
 import { homeData } from '../../data/homeData';
 import './HomePage.css';
 
 const HomePage = () => {
+  // Destructure data from our homeData file
   const { reviews, collections, features, specialOffer } = homeData;
+
+  const reviewsData = [
+    {
+      name: 'Nabeel Safwan',
+      time: '8 months ago',
+      stars: '★★★★★',
+      content: 'Very good service and affordable prices.',
+      profilePhoto: 'https://via.placeholder.com/50', // Example profile photo
+    },
+    {
+      name: 'Aruna Jayasinghe',
+      time: 'a year ago',
+      stars: '★★★★★',
+      content:
+        'I have been looking for quality value for money watches and found Velora the perfect place. Service was excellent and support was great.',
+      profilePhoto: 'https://via.placeholder.com/50',
+    },
+    {
+      name: 'Kirushan Gokularatna',
+      time: '6 months ago',
+      stars: '★★★★★',
+      content:
+        'Bought a premium watch from them, gotta say they got some authentic and legit stuff. Looking to purchase more products from them!',
+      profilePhoto: 'https://via.placeholder.com/50',
+    },
+    {
+      name: 'Shavingya Vihanga',
+      time: 'a year ago',
+      stars: '★★★★★',
+      content:
+        'Highly Recommended. Bought and Paid online, very reliable. The only place which has premium watches for reasonable prices.',
+      profilePhoto: 'https://via.placeholder.com/50',
+    },
+  ];
 
   return (
     <MainLayout>
       <div className="home-page">
-        {/* Hero Section */}
-        <section className="hero-section">
-          <div className="hero-content">
-            <h1>Welcome to Velora Watches</h1>
-            <p>Discover our collection of premium timepieces</p>
-            <Link to="/products">
-              <button className="shop-now-btn">Shop Now</button>
-            </Link>
+        {/* Modified Hero Section with RotatingOffers */}
+        <section className="hero-combined-section">
+          <div className="hero-section">
+            <div className="hero-content">
+              <h1 className="hero-title">Welcome to Velora Watches</h1>
+              <p className="hero-subtitle">Discover our collection of premium timepieces crafted with precision and elegance</p>
+              <Link to="/products">
+                <button className="hero-btn">Shop Now</button>
+              </Link>
+            </div>
+          </div>
+                  
+          <div className="hero-rotating-offers">
+            <RotatingOffers />
           </div>
         </section>
 
         {/* Featured Watches Section */}
         <WatchCards />
 
-        {/* Special Offer Section */}
-        <section className="special-offer">
-          <img
-            src={specialOffer.image}
-            alt="Special Offer"
-            className="offer-image"
-          />
-          <div className="offer-content">
-            <h2>{specialOffer.title}</h2>
-            <p>{specialOffer.description}</p>
-            <Link to={specialOffer.link}>
-              <button className="offer-btn">Shop Now</button>
-            </Link>
-          </div>
-        </section>
+        {/* Special Offer Section - Now using the separate component */}
+        <ExclusiveDeal specialOffer={specialOffer} />
 
         {/* Collection Showcase Section */}
         <section className="collection-showcase">
@@ -130,4 +160,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
