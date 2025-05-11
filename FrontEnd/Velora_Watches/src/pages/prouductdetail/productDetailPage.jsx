@@ -1,17 +1,19 @@
-import React from "react";
+// ProductDetailPage.jsx
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { products } from "../../data/products";
 import MainLayout from "../../components/layout/MainLayout/MainLayout";
-import './productDetailPage.css';
+import "./productDetailPage.css";
+import { FaStar, FaRegStar, FaShareAlt } from "react-icons/fa";
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
-  
-  // Find the product with the matching ID
-  const product = products.find(p => p.id === Number(productId));
-  
-  // If product not found, show error or redirect
+  const [activeImage, setActiveImage] = useState(0);
+  const [activeTab, setActiveTab] = useState("description");
+
+  const product = products.find((p) => p.id === Number(productId));
+
   if (!product) {
     return (
       <MainLayout>
@@ -26,21 +28,30 @@ const ProductDetailPage = () => {
     );
   }
 
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, i) =>
+      i < rating ? <FaStar key={i} color="#ffc107" /> : <FaRegStar key={i} color="#ddd" />
+    );
+  };
+
   return (
     <MainLayout>
+      <div className="breadcrumb">Home / Products / {product.name}</div>
       <div className="product-container">
         <div className="image-gallery">
-          <img src={product.image} alt={product.name} className="main-image" />
+          <img
+            src={product.additionalImages?.[activeImage] || product.image}
+            alt={product.name}
+            className="main-image"
+          />
           <div className="thumbnail-row">
-            {/* If you have multiple images, you could map through them here */}
-            <img src={product.image} alt={`${product.name} view 1`} className="thumbnail active" />
-            {/* Example of additional images if available */}
-            {product.additionalImages?.map((img, index) => (
-              <img 
-                key={index} 
-                src={img} 
-                alt={`${product.name} view ${index + 2}`} 
-                className="thumbnail" 
+            {[product.image, ...(product.additionalImages || [])].map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`${product.name} view ${index + 1}`}
+                className={`thumbnail ${activeImage === index ? "active" : ""}`}
+                onClick={() => setActiveImage(index)}
               />
             ))}
           </div>
@@ -48,23 +59,11 @@ const ProductDetailPage = () => {
 
         <div className="details-section">
           <h1>{product.name}</h1>
-          <p className="brand">Category: {product.category}</p>
+          <p className="brand">Brand: {product.brand}</p>
           <p className="price">${product.price}</p>
-
-          <div className="short-description">
-            {product.description}
-          </div>
-
-          {product.features && (
-            <div className="features">
-              <h3>Features:</h3>
-              <ul>
-                {product.features.map((feature, index) => (
-                  <li key={index}>{feature}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <p className="stock-status">{product.inStock ? "In Stock" : "Out of Stock"}</p>
+          <div className="stars">{renderStars(product.rating || 4)}</div>
+          <div className="short-description">{product.description}</div>
 
           <div className="quantity">
             <label>Quantity:</label>
@@ -72,18 +71,39 @@ const ProductDetailPage = () => {
           </div>
 
           <button className="add-to-cart">Add to Cart</button>
-
-          {/* Mock reviews section */}
-          <div className="reviews">
-            <h3>Reviews</h3>
-            <div className="review">
-              ⭐⭐⭐⭐☆ <p>Very elegant design. Love it!</p>
-            </div>
-            <div className="review">
-              ⭐⭐⭐⭐⭐ <p>Perfect gift for my husband.</p>
-            </div>
-          </div>
+          <FaShareAlt className="share-icon" title="Share this product" />
         </div>
+      </div>
+
+      <div className="tabs">
+        <button onClick={() => setActiveTab("description")} className={activeTab === "description" ? "active" : ""}>Description</button>
+        <button onClick={() => setActiveTab("reviews")} className={activeTab === "reviews" ? "active" : ""}>Reviews</button>
+        <button onClick={() => setActiveTab("specs")} className={activeTab === "specs" ? "active" : ""}>Measurements</button>
+      </div>
+
+      <div className="tab-content">
+        {activeTab === "description" && <p>{product.longDescription}</p>}
+
+        {activeTab === "reviews" && (
+          <div className="reviews">
+            {product.reviews?.map((rev, i) => (
+              <div key={i} className="review">
+                {renderStars(rev.rating)}
+                <p>{rev.comment}</p>
+              </div>
+            )) || <p>No reviews yet.</p>}
+          </div>
+        )}
+
+        {activeTab === "specs" && (
+          <div className="specs">
+            <ul>
+              {product.measurements?.map((m, i) => (
+                <li key={i}>{m}</li>
+              )) || <p>No specifications provided.</p>}
+            </ul>
+          </div>
+        )}
       </div>
     </MainLayout>
   );
