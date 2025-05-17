@@ -46,7 +46,28 @@ FrontEnd/   # Frontend code (React app)
 
 ### Backend
 
-- Backend setup instructions will be provided in the `BackEnd/` directory (add a README there for backend-specific steps).
+1. Open a terminal and navigate to the backend directory:
+   ```sh
+   cd BackEnd
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Set up environment variables:
+   ```sh
+   # Copy the example environment file
+   cp .env.example .env
+   
+   # Edit .env with your actual values (MongoDB URI, JWT secret, etc.)
+   ```
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
+   The API will be available at http://localhost:5000
+
+> **⚠️ SECURITY NOTE:** Never commit your `.env` file to version control. If you've accidentally committed sensitive information, change your credentials immediately.
 
 ---
 
