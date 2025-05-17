@@ -19,6 +19,6 @@ build/
 # IDE files
 .vscode/
 .idea/
-
+.env
 # Directory: helping things
 helping things/
