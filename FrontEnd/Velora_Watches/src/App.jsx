@@ -8,6 +8,7 @@ import SignUpPage from './pages/Auth/SignUpPage';
 import LoginPage from './pages/Auth/LoginPage';
 import ProductDetailPage from './pages/prouductdetail/productDetailPage';
 import DashboardPage  from './pages/Dashboard/DashboardPage';
+import WishlistPage from './pages/Wishlist/WishlistPage';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/products" element={<ProductsPage />} />
         <Route path='/product/:productId' element={<ProductDetailPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/wishlist" element={<WishlistPage />} />
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/dashboard' element={<DashboardPage />} />

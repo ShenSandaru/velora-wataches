@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../../Context/CartContext';
+import { useWishlist } from '../../Context/WishlistContext';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
 import { getProductById } from '../../services/productService'; // Adjust based on your actual service
 import './productDetailPage.css';
+import './wishlist-detail.css';
 
 const ProductDetailPage = () => {
   console.log('ProductDetailPage rendering');
@@ -11,10 +13,12 @@ const ProductDetailPage = () => {
   console.log('Product ID from params:', productId);
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   useEffect(() => {
     // Fetch product details
@@ -30,6 +34,11 @@ const ProductDetailPage = () => {
         const product = await getProductById(productId);
         console.log('Product data received:', product);
         setProduct(product);
+        
+        // Check if product is in wishlist
+        if (product) {
+          setIsWishlisted(isInWishlist(product.id));
+        }
       } catch (error) {
         console.error('Error fetching product:', error);
       } finally {
@@ -38,7 +47,7 @@ const ProductDetailPage = () => {
     };
 
     fetchProduct();
-  }, [productId]);
+  }, [productId, isInWishlist]);
 
   const handleAddToCart = () => {
     if (product) {
@@ -55,6 +64,13 @@ const ProductDetailPage = () => {
     if (product) {
       addToCart(product, quantity);
       navigate('/cart');
+    }
+  };
+
+  const handleToggleWishlist = () => {
+    if (product) {
+      toggleWishlist(product);
+      setIsWishlisted(!isWishlisted);
     }
   };
 
@@ -79,6 +95,13 @@ const ProductDetailPage = () => {
       <div className="product-detail">
         <div className="product-image-container">
           <img src={product.image} alt={product.name} className="product-detail-image" />
+          <button 
+            onClick={handleToggleWishlist}
+            className={`wishlist-btn-detail ${isWishlisted ? 'wishlisted' : ''}`}
+            aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+          >
+            {isWishlisted ? '❤️' : '🤍'}
+          </button>
         </div>
         
         <div className="product-info">

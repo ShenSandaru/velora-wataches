@@ -6,13 +6,16 @@ import './styles/global.css' // Import global styles for responsive design
 import App from './App.jsx'
 import { UserProvider } from './Context/UserContext'
 import { CartProvider } from './Context/CartContext'
+import { WishlistProvider } from './Context/WishlistContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <UserProvider>
         <CartProvider>
-          <App />
+          <WishlistProvider>
+            <App />
+          </WishlistProvider>
         </CartProvider>
       </UserProvider>
     </BrowserRouter>

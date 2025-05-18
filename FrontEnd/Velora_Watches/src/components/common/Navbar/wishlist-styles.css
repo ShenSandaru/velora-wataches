@@ -1,0 +1,68 @@
+/* Wishlist Icon */
+.wishlist-menu-item {
+  position: relative;
+}
+
+.wishlist-icon-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.7rem !important;
+}
+
+.wishlist-count {
+  position: absolute;
+  top: 12px;
+  right: 2px;
+  background-color: #ff6b6b;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.wishlist-icon-link:hover .wishlist-count {
+  transform: scale(1.1);
+}
+
+/* Specific styling for wishlist icon */
+.wishlist-icon-link svg {
+  fill: none;
+  transition: fill 0.2s;
+}
+
+.wishlist-icon-link:hover svg,
+.wishlist-icon-link.active svg {
+  fill: rgba(255, 255, 255, 0.2);
+}
+
+@media screen and (max-width: 768px) {
+  .wishlist-icon-link {
+    padding: 0.9rem 1rem !important;
+    justify-content: flex-start;
+  }
+  
+  .wishlist-icon-link svg {
+    margin-right: 10px;
+  }
+  
+  .wishlist-count {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-left: 8px;
+  }
+  
+  /* Add a label for mobile view */
+  .wishlist-icon-link::after {
+    content: 'Wishlist';
+    margin-left: 8px;
+  }
+}
