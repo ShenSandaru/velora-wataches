@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
 import { useCart } from '../../Context/CartContext';
 import './CartPage.css';
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const { cartItems, updateQuantity, removeFromCart } = useCart();
 
   // Calculate cart total
@@ -98,7 +99,12 @@ const CartPage = () => {
                 <span>Total</span>
                 <span>${total.toFixed(2)}</span>
               </div>
-              <button className="checkout-btn">Proceed to Checkout</button>
+              <button 
+                className="checkout-btn" 
+                onClick={() => navigate('/checkout')}
+              >
+                Proceed to Checkout
+              </button>
               <Link to="/products" className="continue-shopping">Continue Shopping</Link>
             </div>
           </div>
