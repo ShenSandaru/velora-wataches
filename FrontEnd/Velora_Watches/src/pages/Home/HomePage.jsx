@@ -7,44 +7,11 @@ import RotatingOffers from './Rotating offerces/RotatingOffers';
 import ExclusiveDeal from './ExclusiveDeal/ExclusiveDeal';
 import { homeData } from '../../data/homeData';
 import './HomePage.css';
+import ReviewSection from './ReviewSection/ReviewSection';
 
 const HomePage = () => {
   // Destructure data from our homeData file
   const { reviews, collections, features, specialOffer } = homeData;
-
-  const reviewsData = [
-    {
-      name: 'Nabeel Safwan',
-      time: '8 months ago',
-      stars: '★★★★★',
-      content: 'Very good service and affordable prices.',
-      profilePhoto: 'https://via.placeholder.com/50', // Example profile photo
-    },
-    {
-      name: 'Aruna Jayasinghe',
-      time: 'a year ago',
-      stars: '★★★★★',
-      content:
-        'I have been looking for quality value for money watches and found Velora the perfect place. Service was excellent and support was great.',
-      profilePhoto: 'https://via.placeholder.com/50',
-    },
-    {
-      name: 'Kirushan Gokularatna',
-      time: '6 months ago',
-      stars: '★★★★★',
-      content:
-        'Bought a premium watch from them, gotta say they got some authentic and legit stuff. Looking to purchase more products from them!',
-      profilePhoto: 'https://via.placeholder.com/50',
-    },
-    {
-      name: 'Shavingya Vihanga',
-      time: 'a year ago',
-      stars: '★★★★★',
-      content:
-        'Highly Recommended. Bought and Paid online, very reliable. The only place which has premium watches for reasonable prices.',
-      profilePhoto: 'https://via.placeholder.com/50',
-    },
-  ];
 
   return (
     <MainLayout>
@@ -60,7 +27,6 @@ const HomePage = () => {
               </Link>
             </div>
           </div>
-                  
           <div className="hero-rotating-offers">
             <RotatingOffers />
           </div>
@@ -69,7 +35,7 @@ const HomePage = () => {
         {/* Featured Watches Section */}
         <WatchCards />
 
-        {/* Special Offer Section - Now using the separate component */}
+        {/* Special Offer Section */}
         <ExclusiveDeal specialOffer={specialOffer} />
 
         {/* Collection Showcase Section */}
@@ -85,72 +51,33 @@ const HomePage = () => {
           </div>
         </section>
 
-        {/* Reviews & Features Section */}
-        <section className="reviews-section">
-          <div className="reviews-header">
-            <div>
-              <h2 className="reviews-title">Velora Watches</h2>
-              <div className="reviews-rating">
-                <span className="stars">★★★★★</span>
-                <span className="rating-value">4.8</span>
-              </div>
-              <div className="google-powered">powered by Google</div>
-              <a href="#" className="review-us">
-                Review us on 😊
-              </a>
-            </div>
-          </div>
+        {/* Reviews Section */}
+        <ReviewSection reviews={reviews} />
 
-          <div className="reviews-container">
-            <div className="reviews-grid">
-              {reviews.map((review, index) => (
-                <div className="review-card" key={`review-${index}`}>
-                  <div className="reviewer-info">
-                    <img
-                      src={review.profilePhoto}
-                      alt={`${review.name}'s profile`}
-                      className="reviewer-photo"
-                    />
-                    <div className="reviewer-details">
-                      <span className="reviewer-name">{review.name}</span>
-                      <span className="review-time">{review.time}</span>
-                    </div>
-                  </div>
-                  <div className="review-stars">{review.stars}</div>
-                  <p className="review-content">{review.content}</p>
-                </div>
-              ))}
-
-              {/* Duplicate reviews for continuous scroll effect */}
-              {reviews.map((review, index) => (
-                <div className="review-card" key={`review-clone-${index}`}>
-                  <div className="reviewer-info">
-                    <img
-                      src={review.profilePhoto}
-                      alt={`${review.name}'s profile`}
-                      className="reviewer-photo"
-                    />
-                    <div className="reviewer-details">
-                      <span className="reviewer-name">{review.name}</span>
-                      <span className="review-time">{review.time}</span>
-                    </div>
-                  </div>
-                  <div className="review-stars">{review.stars}</div>
-                  <p className="review-content">{review.content}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="features-grid">
-            {features.map((feature, index) => (
+        {/* Features Section */}
+        <div className="features-grid">
+          {features.map((feature, index) => {
+            const images = {
+              Shipping: "https://img.freepik.com/premium-vector/cargo-ship-with-containers-line-icon_116137-4527.jpg",
+              Genuine: "https://t3.ftcdn.net/jpg/07/02/37/36/360_F_702373647_GcgyxgpEYDhb77YUAsPpslgYu8BmmdGa.jpg",
+              Accredited: "https://img.freepik.com/premium-vector/approval-icon-document-accredited-authorized-agreement-thin-line-symbol-web-mobile-phone-white-backgroundweb_530108-740.jpg",
+              "Trusted Seller": "https://media.gettyimages.com/id/1743988735/vector/trusted-seller-badge-vector-illustration-modern-label-design.jpg?s=1024x1024&w=gi&k=20&c=xCIH5Evz7TRQcynZu4Rr9we8U8xXJS9ejI5y4BTihXE=",
+            };
+            return (
               <div className="feature-card" key={index}>
-                <h3 className="feature-title">{feature.title}</h3>
+                <div className="feature-title-row">
+                  <img
+                    src={images[feature.title]}
+                    alt={feature.title}
+                    className="feature-icon"
+                  />
+                  <h3 className="feature-title">{feature.title}</h3>
+                </div>
                 <p className="feature-desc">{feature.description}</p>
               </div>
-            ))}
-          </div>
-        </section>
+            );
+          })}
+        </div>
 
         {/* Newsletter Section */}
         <NewsletterService />
