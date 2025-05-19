@@ -16,6 +16,8 @@ app.use(express.json());
 app.use('/api/auth', require('./routers/authRoutes'));
 app.use('/api/user', require('./routers/userRoutes'));
 app.use('/api/newsletter', require('./routers/newsletterRoutes'));
+// Add order routes
+app.use('/api/orders', require('./routers/orderRoutes'));
 
 // MongoDB Connection
 const mongoURI = process.env.MONGODB_URI;
@@ -32,4 +34,8 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch((err) => {
     console.error('MongoDB connection error:', err);
     process.exit(1);
-  });
+
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  }
+  );
