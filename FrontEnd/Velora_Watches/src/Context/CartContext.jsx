@@ -4,6 +4,7 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [singleCheckoutItem, setSingleCheckoutItem] = useState(null);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -15,31 +16,48 @@ export const CartProvider = ({ children }) => {
         console.error('Error parsing cart items:', error);
       }
     }
+
+    const savedSingleItem = localStorage.getItem('singleCheckoutItem');
+    if (savedSingleItem) {
+      try {
+        setSingleCheckoutItem(JSON.parse(savedSingleItem));
+      } catch (error) {
+        console.error('Error parsing single checkout item:', error);
+      }
+    }
   }, []);
 
-  // Save to localStorage when cart changes
+  // Save to localStorage when cart or single item changes
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    // Trigger storage event for other tabs
     window.dispatchEvent(new Event('storage'));
   }, [cartItems]);
+
+  useEffect(() => {
+    if (singleCheckoutItem) {
+      localStorage.setItem('singleCheckoutItem', JSON.stringify(singleCheckoutItem));
+    }
+  }, [singleCheckoutItem]);
 
   // Add to cart function
   const addToCart = (product, quantity = 1) => {
     setCartItems(prevItems => {
-      // Check if product already exists in cart
       const existingItemIndex = prevItems.findIndex(item => item.id === product.id);
       
       if (existingItemIndex >= 0) {
-        // If exists, update quantity
         const updatedItems = [...prevItems];
         updatedItems[existingItemIndex].quantity += quantity;
         return updatedItems;
       } else {
-        // If new, add to cart
         return [...prevItems, { ...product, quantity }];
       }
     });
+  };
+
+  // Buy Now function for direct checkout
+  const buyNow = (product, quantity = 1) => {
+    setSingleCheckoutItem({ ...product, quantity });
+    localStorage.setItem('singleCheckoutItem', JSON.stringify({ ...product, quantity }));
   };
 
   // Remove from cart
@@ -61,6 +79,8 @@ export const CartProvider = ({ children }) => {
   // Clear cart
   const clearCart = () => {
     setCartItems([]);
+    setSingleCheckoutItem(null);
+    localStorage.removeItem('singleCheckoutItem');
   };
 
   // Get cart count
@@ -71,11 +91,13 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider value={{
       cartItems,
+      singleCheckoutItem,
       addToCart,
       removeFromCart,
       updateQuantity,
       clearCart,
-      getCartCount
+      getCartCount,
+      buyNow
     }}>
       {children}
     </CartContext.Provider>

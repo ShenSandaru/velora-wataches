@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
 import { useCart } from '../../Context/CartContext';
@@ -25,9 +25,31 @@ const CheckoutPage = () => {
   const [errors, setErrors] = useState({});
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [checkoutItems, setCheckoutItems] = useState([]);
+
+  // Initialize checkout items based on cart or direct buy item
+  useEffect(() => {
+    const singleItemJson = localStorage.getItem('singleCheckoutItem');
+    
+    if (singleItemJson) {
+      // If coming from 'Buy Now', use the single item
+      try {
+        const singleItem = JSON.parse(singleItemJson);
+        setCheckoutItems([singleItem]);
+        // Clear this item so it's only used once
+        localStorage.removeItem('singleCheckoutItem');
+      } catch (error) {
+        console.error('Error parsing single checkout item:', error);
+        setCheckoutItems(cartItems);
+      }
+    } else {
+      // Otherwise use the cart items
+      setCheckoutItems(cartItems);
+    }
+  }, [cartItems]);
 
   // Calculate order total
-  const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const subtotal = checkoutItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   const shipping = subtotal > 0 ? 15 : 0;
   const total = subtotal + shipping;
 
@@ -126,7 +148,7 @@ const CheckoutPage = () => {
     try {
       // Format order data for backend
       const orderData = {
-        items: cartItems.map(item => ({
+        items: checkoutItems.map(item => ({
           productId: item.id,
           name: item.name,
           price: item.price,
@@ -405,7 +427,7 @@ const CheckoutPage = () => {
           <div className="order-summary">
             <h2>Order Summary</h2>
             <div className="order-items">
-              {cartItems.map(item => (
+              {checkoutItems.map(item => (
                 <div key={item.id} className="order-item">
                   <div className="item-info">
                     <img src={item.image} alt={item.name} className="item-image" />

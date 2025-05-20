@@ -1,7 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../../../Context/CartContext';
 import './WatchCards.css';
 
 const WatchCards = () => {
+  const navigate = useNavigate();
+  const { buyNow } = useCart();
   const watchCardsData = [
     {
       id: 1,
@@ -61,7 +65,22 @@ const WatchCards = () => {
                 <h3>{watch.name}</h3>
                 <p>{watch.description}</p>
                 <p className="price">{watch.price}</p>
-                <button className="buy-btn">Buy Now</button>
+                <button 
+                  className="buy-btn" 
+                  onClick={() => {
+                    // Convert price string to number before sending to buyNow
+                    const priceNumber = parseFloat(watch.price.replace('$', ''));
+                    const product = { 
+                      ...watch, 
+                      price: priceNumber,
+                      image: watch.image 
+                    };
+                    buyNow(product);
+                    navigate('/checkout');
+                  }}
+                >
+                  Buy Now
+                </button>
               </div>
             </div>
           </div>
