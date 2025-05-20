@@ -75,8 +75,12 @@ const WatchCards = () => {
                       price: priceNumber,
                       image: watch.image 
                     };
+                    // First call buyNow to set the single checkout item
                     buyNow(product);
-                    navigate('/checkout');
+                    // Then navigate to checkout page
+                    setTimeout(() => {
+                      navigate('/checkout');
+                    }, 50); // Small delay to ensure state is updated before navigation
                   }}
                 >
                   Buy Now

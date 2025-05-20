@@ -56,8 +56,11 @@ export const CartProvider = ({ children }) => {
 
   // Buy Now function for direct checkout
   const buyNow = (product, quantity = 1) => {
-    setSingleCheckoutItem({ ...product, quantity });
-    localStorage.setItem('singleCheckoutItem', JSON.stringify({ ...product, quantity }));
+    // Clear existing cart items from checkout to ensure only this item is shown
+    const singleItem = { ...product, quantity };
+    setSingleCheckoutItem(singleItem);
+    localStorage.setItem('singleCheckoutItem', JSON.stringify(singleItem));
+    console.log('Buy Now item set:', singleItem);
   };
 
   // Remove from cart

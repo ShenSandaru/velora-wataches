@@ -7,7 +7,7 @@ import './CheckoutPage.css';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
-  const { cartItems, clearCart } = useCart();
+  const { cartItems, singleCheckoutItem, clearCart } = useCart();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -29,24 +29,28 @@ const CheckoutPage = () => {
 
   // Initialize checkout items based on cart or direct buy item
   useEffect(() => {
-    const singleItemJson = localStorage.getItem('singleCheckoutItem');
+    // Check for singleCheckoutItem first in localStorage (for page refresh scenarios)
+    const storedSingleItem = localStorage.getItem('singleCheckoutItem');
     
-    if (singleItemJson) {
-      // If coming from 'Buy Now', use the single item
+    if (storedSingleItem) {
       try {
-        const singleItem = JSON.parse(singleItemJson);
-        setCheckoutItems([singleItem]);
-        // Clear this item so it's only used once
-        localStorage.removeItem('singleCheckoutItem');
+        const parsedItem = JSON.parse(storedSingleItem);
+        setCheckoutItems([parsedItem]);
+        console.log('Using stored single checkout item:', parsedItem);
       } catch (error) {
-        console.error('Error parsing single checkout item:', error);
-        setCheckoutItems(cartItems);
+        console.error('Error parsing stored single checkout item:', error);
+        setCheckoutItems([]);
       }
+    } else if (singleCheckoutItem) {
+      // If there's a singleCheckoutItem in context, use it
+      setCheckoutItems([singleCheckoutItem]);
+      console.log('Using context single checkout item:', singleCheckoutItem);
     } else {
       // Otherwise use the cart items
       setCheckoutItems(cartItems);
+      console.log('Using cart items:', cartItems);
     }
-  }, [cartItems]);
+  }, [cartItems, singleCheckoutItem]);
 
   // Calculate order total
   const subtotal = checkoutItems.reduce((total, item) => total + (item.price * item.quantity), 0);
@@ -179,7 +183,7 @@ const CheckoutPage = () => {
         console.log('Order submitted successfully:', orderData);
         setIsProcessing(false);
         setOrderSuccess(true);
-        clearCart(); // Clear the cart after successful order
+        clearCart(); // Clear the cart and single checkout item after successful order
       }, 2000);
       
       // Reset form
@@ -225,6 +229,17 @@ const CheckoutPage = () => {
     );
   }
 
+  // Cleanup function to remove singleCheckoutItem when leaving the page
+  useEffect(() => {
+    return () => {
+      // Only clear localStorage if the order is not successful
+      // This prevents clearing if user just refreshes the page
+      if (!orderSuccess) {
+        localStorage.removeItem('singleCheckoutItem');
+      }
+    };
+  }, [orderSuccess]);
+  
   return (
     <MainLayout>
       <div className="checkout-page">
