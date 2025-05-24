@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
 import { useCart } from '../../Context/CartContext';
@@ -7,7 +7,7 @@ import './CheckoutPage.css';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
-  const { cartItems, clearCart } = useCart();
+  const { cartItems, singleCheckoutItem, clearCart } = useCart();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -25,9 +25,35 @@ const CheckoutPage = () => {
   const [errors, setErrors] = useState({});
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [checkoutItems, setCheckoutItems] = useState([]);
+
+  // Initialize checkout items based on cart or direct buy item
+  useEffect(() => {
+    // Check for singleCheckoutItem first in localStorage (for page refresh scenarios)
+    const storedSingleItem = localStorage.getItem('singleCheckoutItem');
+    
+    if (storedSingleItem) {
+      try {
+        const parsedItem = JSON.parse(storedSingleItem);
+        setCheckoutItems([parsedItem]);
+        console.log('Using stored single checkout item:', parsedItem);
+      } catch (error) {
+        console.error('Error parsing stored single checkout item:', error);
+        setCheckoutItems([]);
+      }
+    } else if (singleCheckoutItem) {
+      // If there's a singleCheckoutItem in context, use it
+      setCheckoutItems([singleCheckoutItem]);
+      console.log('Using context single checkout item:', singleCheckoutItem);
+    } else {
+      // Otherwise use the cart items
+      setCheckoutItems(cartItems);
+      console.log('Using cart items:', cartItems);
+    }
+  }, [cartItems, singleCheckoutItem]);
 
   // Calculate order total
-  const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const subtotal = checkoutItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   const shipping = subtotal > 0 ? 15 : 0;
   const total = subtotal + shipping;
 
@@ -126,7 +152,7 @@ const CheckoutPage = () => {
     try {
       // Format order data for backend
       const orderData = {
-        items: cartItems.map(item => ({
+        items: checkoutItems.map(item => ({
           productId: item.id,
           name: item.name,
           price: item.price,
@@ -157,7 +183,7 @@ const CheckoutPage = () => {
         console.log('Order submitted successfully:', orderData);
         setIsProcessing(false);
         setOrderSuccess(true);
-        clearCart(); // Clear the cart after successful order
+        clearCart(); // Clear the cart and single checkout item after successful order
       }, 2000);
       
       // Reset form
@@ -203,6 +229,17 @@ const CheckoutPage = () => {
     );
   }
 
+  // Cleanup function to remove singleCheckoutItem when leaving the page
+  useEffect(() => {
+    return () => {
+      // Only clear localStorage if the order is not successful
+      // This prevents clearing if user just refreshes the page
+      if (!orderSuccess) {
+        localStorage.removeItem('singleCheckoutItem');
+      }
+    };
+  }, [orderSuccess]);
+  
   return (
     <MainLayout>
       <div className="checkout-page">
@@ -405,7 +442,7 @@ const CheckoutPage = () => {
           <div className="order-summary">
             <h2>Order Summary</h2>
             <div className="order-items">
-              {cartItems.map(item => (
+              {checkoutItems.map(item => (
                 <div key={item.id} className="order-item">
                   <div className="item-info">
                     <img src={item.image} alt={item.name} className="item-image" />
