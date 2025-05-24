@@ -1,0 +1,210 @@
+.review-section {
+  position: relative;
+  padding: 2rem;
+  border-radius: 24px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+  /* Fade: image strong at bottom, faded at top */
+  background: 
+    linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 100%),
+    url('https://img.freepik.com/free-vector/happy-new-year-background-with-clock_1048-3405.jpg?ga=GA1.1.415515827.1742750229&semt=ais_hybrid&w=740') center/cover no-repeat;
+  z-index: 1;
+}
+.review-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+   min-width: 100vw;
+  max-width: 100vw;
+  height: 100%;
+  z-index: 0;
+  background: url('https://img.freepik.com/free-vector/happy-new-year-background-with-clock_1048-3405.jpg?ga=GA1.1.415515827.1742750229&semt=ais_hybrid&w=740') center/cover no-repeat;
+  filter: blur(90px) brightness(0.8);
+  pointer-events: none;
+}
+
+.review-google-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0rem 0 0rem 0;
+}
+.review-google-icon img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+  margin: 0.2rem auto;
+}
+.review-header,
+.reviews-container {
+  position: relative;
+  z-index: 1;
+}
+.brand-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #222;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.rating {
+  font-size: 1.5rem;
+  color: #FFD700;
+  margin-bottom: 0.5rem;
+}
+.score {
+  color: #222;
+  font-weight: 700;
+  margin-left: 0.5rem;
+}
+.powered {
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+.review-btn {
+  background: #003366;
+  color: #ffffff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.review-btn:hover {
+  background: #3b56f5;
+   box-shadow: 0 6px 24px rgba(59, 86, 245, 0.3), 0 1.5px 6px rgba(0,0,0,0.12);
+  transform: translateY(-3px) scale(1.04);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.reviews-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.review-card {
+  background: #fff;
+  border: 8px solid #e0e0e0; /* solid gray border */
+  border-radius: 18px;
+  padding: 1.2rem 2rem;
+  min-width: 220px;
+  max-width: 320px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  font-size: 1.1rem;
+  text-align: left;
+  transition: transform 0.3s;
+}
+.review-panel {
+  background: rgba(255,255,255,0.95);
+  border: 2px solid #d1d5db; /* light gray */
+  border-radius: 24px;
+  max-width: 420px;
+  margin: 0 auto;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  z-index: 2;
+}
+.review-header {
+  margin-bottom: 1.5rem;
+}
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.reviewer-photo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 0.7rem;
+  object-fit: cover;
+}
+.reviewer-details {
+  display: flex;
+  flex-direction: column;
+}
+.reviewer-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+.review-time {
+  font-size: 0.9rem;
+  color: #888;
+  margin-left: 0.5rem;
+}
+.review-stars {
+  color: #FFD700;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.review-content {
+  margin: 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/* Responsive for small screens */
+@media (max-width: 375px) {
+    
+    .reviews-grid {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .review-card {
+    min-width: 220px;
+    max-width: 80vw;
+  }
+  .reviewer-photo {
+    width: 40px;
+    height: 40px;
+  }
+  .review-stars {
+    font-size: 0.9rem;
+  }
+  .review-content {
+    font-size: 0.9rem;
+  }
+
+}
+  .reviews-marquee-outer {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 1.5rem;
+  /* Keeps your panel look */
+}
+
+.reviews-marquee-inner {
+  display: flex;
+  gap: 1.2rem;
+  animation: reviews-marquee-scroll 30s linear infinite;
+  width: max-content;
+}
+
+@keyframes reviews-marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
