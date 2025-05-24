@@ -1,8 +1,18 @@
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+
+const dotenv = require('dotenv');
+const path = require('path');
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+
 
 const app = express();
 
@@ -18,6 +28,7 @@ app.use('/api/newsletter', require('./routers/newsletterRoutes'));
 app.use('/api/orders', require('./routers/orderRoutes'));
 
 // MongoDB Connection
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('MongoDB connected successfully');
@@ -30,3 +41,24 @@ const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+const mongoURI = process.env.MONGO_URI;
+if (!mongoURI) {
+  console.error('Error: MONGO_URI is not defined in environment variables.');
+  process.exit(1);
+}
+
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch((err) => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  }
+  );
+

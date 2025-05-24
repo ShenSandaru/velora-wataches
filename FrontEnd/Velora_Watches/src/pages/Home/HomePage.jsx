@@ -7,44 +7,11 @@ import RotatingOffers from './Rotating offerces/RotatingOffers';
 import ExclusiveDeal from './ExclusiveDeal/ExclusiveDeal';
 import { homeData } from '../../data/homeData';
 import './HomePage.css';
+import ReviewSection from './ReviewSection/ReviewSection';
 
 const HomePage = () => {
   // Destructure data from our homeData file
   const { reviews, collections, features, specialOffer } = homeData;
-
-  const reviewsData = [
-    {
-      name: 'Nabeel Safwan',
-      time: '8 months ago',
-      stars: '★★★★★',
-      content: 'Very good service and affordable prices.',
-      profilePhoto: 'https://via.placeholder.com/50', // Example profile photo
-    },
-    {
-      name: 'Aruna Jayasinghe',
-      time: 'a year ago',
-      stars: '★★★★★',
-      content:
-        'I have been looking for quality value for money watches and found Velora the perfect place. Service was excellent and support was great.',
-      profilePhoto: 'https://via.placeholder.com/50',
-    },
-    {
-      name: 'Kirushan Gokularatna',
-      time: '6 months ago',
-      stars: '★★★★★',
-      content:
-        'Bought a premium watch from them, gotta say they got some authentic and legit stuff. Looking to purchase more products from them!',
-      profilePhoto: 'https://via.placeholder.com/50',
-    },
-    {
-      name: 'Shavingya Vihanga',
-      time: 'a year ago',
-      stars: '★★★★★',
-      content:
-        'Highly Recommended. Bought and Paid online, very reliable. The only place which has premium watches for reasonable prices.',
-      profilePhoto: 'https://via.placeholder.com/50',
-    },
-  ];
 
   return (
     <MainLayout>
@@ -60,7 +27,6 @@ const HomePage = () => {
               </Link>
             </div>
           </div>
-                  
           <div className="hero-rotating-offers">
             <RotatingOffers />
           </div>
@@ -69,7 +35,7 @@ const HomePage = () => {
         {/* Featured Watches Section */}
         <WatchCards />
 
-        {/* Special Offer Section - Now using the separate component */}
+        {/* Special Offer Section */}
         <ExclusiveDeal specialOffer={specialOffer} />
 
         {/* Collection Showcase Section */}
@@ -85,73 +51,33 @@ const HomePage = () => {
           </div>
         </section>
 
-        {/* Reviews & Features Section */}
-        <section className="reviews-section">
-          <div className="reviews-header">
-            <div>
-              <h2 className="reviews-title">Velora Watches</h2>
-              <div className="reviews-rating">
-                <span className="stars">★★★★★</span>
-                <span className="rating-value">4.8</span>
-              </div>
-              <div className="google-powered">powered by Google</div>
-              <a href="#" className="review-us">
-                Review us on 😊
-              </a>
-            </div>
-          </div>
+        {/* Reviews Section */}
+        <ReviewSection reviews={reviews} />
 
-          <div className="reviews-container">
-            <div className="reviews-grid">
-              {reviews.map((review, index) => (
-                <div className="review-card" key={`review-${index}`}>
-                  <div className="reviewer-info">
-                    <img
-                      src={review.profilePhoto}
-                      alt={`${review.name}'s profile`}
-                      className="reviewer-photo"
-                    />
-                    <div className="reviewer-details">
-                      <span className="reviewer-name">{review.name}</span>
-                      <span className="review-time">{review.time}</span>
-                    </div>
-                  </div>
-                  <div className="review-stars">{review.stars}</div>
-                  <p className="review-content">{review.content}</p>
-                </div>
-              ))}
-
-              {/* Duplicate reviews for continuous scroll effect */}
-              {reviews.map((review, index) => (
-                <div className="review-card" key={`review-clone-${index}`}>
-                  <div className="reviewer-info">
-                    <img
-                      src={review.profilePhoto}
-                      alt={`${review.name}'s profile`}
-                      className="reviewer-photo"
-                    />
-                    <div className="reviewer-details">
-                      <span className="reviewer-name">{review.name}</span>
-                      <span className="review-time">{review.time}</span>
-                    </div>
-                  </div>
-                  <div className="review-stars">{review.stars}</div>
-                  <p className="review-content">{review.content}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="features-grid">
-            {features.map((feature, index) => (
-              <div className="feature-card" key={index}>
-                <h3 className="feature-title">{feature.title}</h3>
-                <p className="feature-desc">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
+  {/* Features Section */}
+<div className="features-row-horizontal">
+  {features.map((feature, index) => {
+    const images = {
+      Shipping: "https://cdn-icons-png.flaticon.com/512/7245/7245083.png",
+      Genuine: "https://png.pngtree.com/png-clipart/20230804/original/pngtree-authentic-red-sticker-icon-vector-isolated-vector-picture-image_9625014.png",
+      Accredited: "https://img.freepik.com/premium-vector/green-certified-isolated-rubber-stamp-sticker-seal-with-stars-tick-icon-vector-illustration_723710-1553.jpg",
+      "Trusted Seller": "https://static.vecteezy.com/system/resources/thumbnails/026/711/260/small/trusted-seller-label-best-seller-premium-member-badge-verified-seller-rubber-stamp-shield-illustration-3d-realistic-glossy-and-shiny-badge-vector.jpg",
+    };
+    return (
+      <div className="feature-card-horizontal" key={index}>
+        <img
+          src={images[feature.title]}
+          alt={feature.title}
+          className="feature-icon-horizontal"
+        />
+        <div className="feature-text-horizontal">
+          <div className="feature-title-horizontal">{feature.title}</div>
+          <div className="feature-desc-horizontal">{feature.description}</div>
+        </div>
+      </div>
+    );
+  })}
+</div>
         {/* Newsletter Section */}
         <NewsletterService />
       </div>
