@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
 import { useUser } from '../../Context/UserContext';
+import { useWishlist } from '../../Context/WishlistContext';
+import { useCart } from '../../Context/CartContext';
 import { userAPI } from '../../services/api';
 import './DashboardPage.css';
 
 const DashboardPage = () => {
   const { user } = useUser();
+  const { wishlistItems, removeFromWishlist } = useWishlist();
+  const { addToCart } = useCart();
   const [activeTab, setActiveTab] = useState('profile');
   
   // Password state
@@ -30,12 +34,16 @@ const DashboardPage = () => {
     { id: '12346', date: '2025-04-15', status: 'Shipped', total: 299.99, items: 1 },
     { id: '12347', date: '2025-03-22', status: 'Processing', total: 499.97, items: 3 },
   ];
-
-  // Mock data for wishlist - in a real app, you would fetch this from your API
-  const mockWishlist = [
-    { id: 1, name: 'Classic Silver Watch', price: 299.99, image: '/images/classic-silver.png' },
-    { id: 5, name: 'Classic Gold Edition', price: 399.99, image: 'https://raw.githubusercontent.com/Dhananjaya001/assignment-web-module/main/images/watch5.png' },
-  ];
+  
+  // Handle adding item to cart
+  const handleAddToCart = (product) => {
+    addToCart(product, 1);
+  };
+  
+  // Handle removing item from wishlist
+  const handleRemoveFromWishlist = (id) => {
+    removeFromWishlist(id);
+  };
 
   // Password change handlers
   const handlePasswordChange = (e) => {
@@ -215,17 +223,29 @@ const handlePasswordSubmit = async (e) => {
             {activeTab === 'wishlist' && (
               <div className="wishlist-tab">
                 <h2>My Wishlist</h2>
-                {mockWishlist.length > 0 ? (
+                {wishlistItems.length > 0 ? (
                   <div className="wishlist-grid">
-                    {mockWishlist.map(item => (
+                    {wishlistItems.map(item => (
                       <div className="wishlist-item" key={item.id}>
-                        <img src={item.image} alt={item.name} />
+                        <Link to={`/product/${item.id}`} className="wishlist-item-image">
+                          <img src={item.image} alt={item.name} />
+                        </Link>
                         <div className="wishlist-item-details">
                           <h3>{item.name}</h3>
                           <p className="price">${item.price.toFixed(2)}</p>
                           <div className="wishlist-actions">
-                            <button className="add-to-cart">Add to Cart</button>
-                            <button className="remove-wishlist">Remove</button>
+                            <button 
+                              className="add-to-cart"
+                              onClick={() => handleAddToCart(item)}
+                            >
+                              Add to Cart
+                            </button>
+                            <button 
+                              className="remove-wishlist"
+                              onClick={() => handleRemoveFromWishlist(item.id)}
+                            >
+                              Remove
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -234,7 +254,7 @@ const handlePasswordSubmit = async (e) => {
                 ) : (
                   <div className="empty-state">
                     <p>Your wishlist is empty.</p>
-                    <button className="shop-now-btn">Discover Watches</button>
+                    <Link to="/products" className="shop-now-btn">Discover Watches</Link>
                   </div>
                 )}
               </div>

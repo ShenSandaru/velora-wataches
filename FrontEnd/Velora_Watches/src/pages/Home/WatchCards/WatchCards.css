@@ -12,12 +12,11 @@
 
 .watch-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  padding: 2rem;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  justify-items: center;
+  padding: 0 1rem;
 }
 
 .card {
@@ -102,7 +101,9 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Adjustments */
+
+
+/* Improve Responsive Adjustments */
 @media (max-width: 1200px) {
   .watch-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -113,24 +114,86 @@
   .watch-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .card {
+    height: 320px; /* Adjusted height */
+  }
+  
+  .card-back {
+    padding: 1rem; /* Reduce padding */
+  }
+  
+  .price {
+    margin-bottom: 1rem; /* Reduce margin */
+  }
 }
 
 @media (max-width: 600px) {
   .watch-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem; /* Reduce gap */
   }
 
   .card {
-    height: 300px;
-    width: 100%;
+    height: 280px; /* Further reduce height */
+    max-width: 300px; /* Add max-width */
+    margin: 0 auto; /* Center the card */
   }
-
+  
+  .card-front, .card-back {
+    padding: 1rem 0.75rem; /* Further reduce padding */
+    overflow: hidden; /* Prevent content overflow */
+  }
+  
   .card-image {
-    width: 140px;
-    height: 140px;
+    max-width: 120px;
+    max-height: 120px;
   }
-
+  
+  .card-back h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .card-back p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    /* Add text truncation for long descriptions */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .price {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .buy-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
   .watch-ads h2 {
-    font-size: 1.5em;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Add extra small screen adjustments */
+@media (max-width: 400px) {
+  .card {
+    height: 260px;
+  }
+  
+  .card-image {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  
+  .buy-btn {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
   }
 }
