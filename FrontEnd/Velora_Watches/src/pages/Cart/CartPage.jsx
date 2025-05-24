@@ -1,28 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import MainLayout from '../../components/layout/MainLayout/MainLayout';
+import { useCart } from '../../Context/CartContext';
 import './CartPage.css';
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState([]);
-
-  // Load cart items from localStorage on component mount
-  useEffect(() => {
-    const savedCartItems = localStorage.getItem('cartItems');
-    if (savedCartItems) {
-      try {
-        setCartItems(JSON.parse(savedCartItems));
-      } catch (error) {
-        console.error('Error parsing cart items:', error);
-        setCartItems([]);
-      }
-    }
-  }, []);
-
-  // Save cart items to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
+  const navigate = useNavigate();
+  const { cartItems, updateQuantity, removeFromCart } = useCart();
 
   // Calculate cart total
   const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
@@ -32,15 +16,12 @@ const CartPage = () => {
   // Handle quantity change
   const handleQuantityChange = (id, newQuantity) => {
     if (newQuantity < 1) return;
-    
-    setCartItems(cartItems.map(item => 
-      item.id === id ? { ...item, quantity: newQuantity } : item
-    ));
+    updateQuantity(id, newQuantity);
   };
 
   // Handle item removal
   const handleRemoveItem = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
+    removeFromCart(id);
   };
 
   return (
@@ -118,7 +99,12 @@ const CartPage = () => {
                 <span>Total</span>
                 <span>${total.toFixed(2)}</span>
               </div>
-              <button className="checkout-btn">Proceed to Checkout</button>
+              <button 
+                className="checkout-btn" 
+                onClick={() => navigate('/checkout')}
+              >
+                Proceed to Checkout
+              </button>
               <Link to="/products" className="continue-shopping">Continue Shopping</Link>
             </div>
           </div>
