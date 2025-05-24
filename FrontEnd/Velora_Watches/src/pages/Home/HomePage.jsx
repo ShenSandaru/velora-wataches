@@ -54,31 +54,30 @@ const HomePage = () => {
         {/* Reviews Section */}
         <ReviewSection reviews={reviews} />
 
-        {/* Features Section */}
-        <div className="features-grid">
-          {features.map((feature, index) => {
-            const images = {
-              Shipping: "https://img.freepik.com/premium-vector/cargo-ship-with-containers-line-icon_116137-4527.jpg",
-              Genuine: "https://t3.ftcdn.net/jpg/07/02/37/36/360_F_702373647_GcgyxgpEYDhb77YUAsPpslgYu8BmmdGa.jpg",
-              Accredited: "https://img.freepik.com/premium-vector/approval-icon-document-accredited-authorized-agreement-thin-line-symbol-web-mobile-phone-white-backgroundweb_530108-740.jpg",
-              "Trusted Seller": "https://media.gettyimages.com/id/1743988735/vector/trusted-seller-badge-vector-illustration-modern-label-design.jpg?s=1024x1024&w=gi&k=20&c=xCIH5Evz7TRQcynZu4Rr9we8U8xXJS9ejI5y4BTihXE=",
-            };
-            return (
-              <div className="feature-card" key={index}>
-                <div className="feature-title-row">
-                  <img
-                    src={images[feature.title]}
-                    alt={feature.title}
-                    className="feature-icon"
-                  />
-                  <h3 className="feature-title">{feature.title}</h3>
-                </div>
-                <p className="feature-desc">{feature.description}</p>
-              </div>
-            );
-          })}
+  {/* Features Section */}
+<div className="features-row-horizontal">
+  {features.map((feature, index) => {
+    const images = {
+      Shipping: "https://cdn-icons-png.flaticon.com/512/7245/7245083.png",
+      Genuine: "https://png.pngtree.com/png-clipart/20230804/original/pngtree-authentic-red-sticker-icon-vector-isolated-vector-picture-image_9625014.png",
+      Accredited: "https://img.freepik.com/premium-vector/green-certified-isolated-rubber-stamp-sticker-seal-with-stars-tick-icon-vector-illustration_723710-1553.jpg",
+      "Trusted Seller": "https://static.vecteezy.com/system/resources/thumbnails/026/711/260/small/trusted-seller-label-best-seller-premium-member-badge-verified-seller-rubber-stamp-shield-illustration-3d-realistic-glossy-and-shiny-badge-vector.jpg",
+    };
+    return (
+      <div className="feature-card-horizontal" key={index}>
+        <img
+          src={images[feature.title]}
+          alt={feature.title}
+          className="feature-icon-horizontal"
+        />
+        <div className="feature-text-horizontal">
+          <div className="feature-title-horizontal">{feature.title}</div>
+          <div className="feature-desc-horizontal">{feature.description}</div>
         </div>
-
+      </div>
+    );
+  })}
+</div>
         {/* Newsletter Section */}
         <NewsletterService />
       </div>

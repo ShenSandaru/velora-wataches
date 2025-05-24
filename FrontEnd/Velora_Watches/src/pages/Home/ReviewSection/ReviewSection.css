@@ -5,29 +5,40 @@
   margin: 2rem 0;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
   overflow: hidden;
-  background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85));
+  /* Fade: image strong at bottom, faded at top */
+  background: 
+    linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 100%),
+    url('https://img.freepik.com/free-vector/happy-new-year-background-with-clock_1048-3405.jpg?ga=GA1.1.415515827.1742750229&semt=ais_hybrid&w=740') center/cover no-repeat;
+  z-index: 1;
 }
 .review-section::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+   min-width: 100vw;
+  max-width: 100vw;
+  height: 100%;
   z-index: 0;
-  background: url('https://images.unsplash.com/photo-1587925358603-c2eea5305bbc?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d3Jpc3R3YXRjaHxlbnwwfHwwfHx8MA%3D%3D') center/cover no-repeat;
-  filter: blur(30px) brightness(0.8);
+  background: url('https://img.freepik.com/free-vector/happy-new-year-background-with-clock_1048-3405.jpg?ga=GA1.1.415515827.1742750229&semt=ais_hybrid&w=740') center/cover no-repeat;
+  filter: blur(90px) brightness(0.8);
+  pointer-events: none;
 }
 
 .review-google-icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0.7rem 0 0.7rem 0;
+  margin: 0rem 0 0rem 0;
 }
 .review-google-icon img {
   width: 80px;
   height: 80px;
   object-fit: contain;
   display: block;
-  margin: 0 auto;
+  margin: 0.2rem auto;
 }
 .review-header,
 .reviews-container {
@@ -84,8 +95,7 @@
 }
 .review-card {
   background: #fff;
-  border: 8px solid transparent;
-  border-image: url('https://img.freepik.com/free-vector/happy-new-year-background-with-clock_1048-3405.jpg?ga=GA1.1.415515827.1742750229&semt=ais_hybrid&w=740') 30 round;
+  border: 8px solid #e0e0e0; /* solid gray border */
   border-radius: 18px;
   padding: 1.2rem 2rem;
   min-width: 220px;
