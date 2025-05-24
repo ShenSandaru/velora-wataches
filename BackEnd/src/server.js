@@ -20,9 +20,9 @@ app.use('/api/newsletter', require('./routers/newsletterRoutes'));
 app.use('/api/orders', require('./routers/orderRoutes'));
 
 // MongoDB Connection
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = process.env.MONGO_URI;
 if (!mongoURI) {
-  console.error('Error: MONGODB_URI is not defined in environment variables.');
+  console.error('Error: MONGO_URI is not defined in environment variables.');
   process.exit(1);
 }
 
